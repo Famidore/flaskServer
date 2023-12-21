@@ -4,14 +4,16 @@
 <head>
     <title>Flask Server</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='squid.ico') }}">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main_page.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/time_page.css') }}">
 </head>
 
 <body>
-    <h1>Server</h1>
+    <h1>Time</h1>
+    <h2></h2>
     <h3>Navigation</h3>
     <button id="Main" type="button" onclick="window.location.href = '/' ; " class="button">Main Page</button>
     <button id="Time" type="button" onclick="window.location.href = '/time' ; " class="button">Time Page</button>
+</body>
 </body>
 
 </html>
