@@ -5,16 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Server</title>
+    <title>Update the server</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='squid.ico') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/main_page.css') }}">
 </head>
 
 <body>
-    <h1>Server</h1>
+    <h1>{{ result }}</h1>
     <button id="Main" type="button" onclick="window.location.href = '/' ; " class="button">Main Page</button>
-    <button id="Time" type="button" onclick="window.location.href = '/time' ; " class="button">Time Page</button>
-    <button id="Time" type="button" onclick="window.location.href = '/pull' ; " class="button">Update Server</button>
 </body>
 
 </html>

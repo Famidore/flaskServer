@@ -1,6 +1,7 @@
 from flask import Flask, render_template, send_from_directory, request
 from datetime import datetime
 import os
+import subprocess
 
 app = Flask(__name__)
 
@@ -22,6 +23,17 @@ def favicon():
 @app.route("/time", methods=["GET", "POST"])
 def time():
     return render_template("time.html")
+
+
+@app.route("/pull", methods=["POST", "GET"])
+def pull():
+    try:
+        subprocess.run(["git", "pull"], check=True)
+        result = "Git Pull Successfull!"
+    except subprocess.CalledProcessError as err:
+        result = f"Error during git pull: {err.output.decode()}"
+
+    return render_template("pulling.html", result=result)
 
 
 if __name__ == "__main__":
