@@ -3,7 +3,6 @@
 }
 
 body {
-    display: flex;
     justify-content: center;
     align-items: center;
     margin: 50px auto;
@@ -12,6 +11,8 @@ body {
 }
 
 .button {
+    display: block;
+    justify-content: center;
     top: 50%;
     background-color: #343436;
     color: #fff;
@@ -20,6 +21,7 @@ body {
     padding: 15px;
     min-height: 30px;
     min-width: 120px;
+    margin: 50px;
 }
 
 .button:hover {
@@ -29,6 +31,6 @@ body {
 
 .button:focus {
     outline-color: transparent;
-    outline-style: solid;
+    outline-style:solid;
     box-shadow: 0 0 0 4px #5a01a7;
 }
