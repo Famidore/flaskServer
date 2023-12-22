@@ -2,6 +2,7 @@ from flask import Flask, render_template, send_from_directory, request
 from datetime import datetime
 import os
 import subprocess
+from movies import get_movies_list
 
 app = Flask(__name__)
 
@@ -39,7 +40,10 @@ def pull():
 
 @app.route("/trends", methods=["POST", "GET"])
 def trends():
-    return render_template("trends.html")
+    movies_list = []
+    for i in get_movies_list():
+        movies_list.append(i.text)
+    return render_template("trends.html", movies_list=movies_list)
 
 
 if __name__ == "__main__":
