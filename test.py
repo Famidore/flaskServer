@@ -31,9 +31,9 @@ def pull():
     try:
         subprocess.run(["git", "pull"], check=True)
         subprocess.run(["pip", "install", "-r", "requirements.txt"], check=True)
-        result = "Git Pull Successfull!"
+        result = "Server update successfull!"
     except subprocess.CalledProcessError as err:
-        result = f"Error during git pull: {err.output.decode()}"
+        result = f"Error during server update: {err.output.decode()}"
 
     return render_template("pulling.html", result=result)
 
