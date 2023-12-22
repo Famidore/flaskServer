@@ -29,11 +29,17 @@ def time():
 def pull():
     try:
         subprocess.run(["git", "pull"], check=True)
+        subprocess.run(["pip", "install", "-r", "requirements.txt"], check=True)
         result = "Git Pull Successfull!"
     except subprocess.CalledProcessError as err:
         result = f"Error during git pull: {err.output.decode()}"
 
     return render_template("pulling.html", result=result)
+
+
+@app.route("/trends", methods=["POST", "GET"])
+def trends():
+    return render_template("trends.html")
 
 
 if __name__ == "__main__":
