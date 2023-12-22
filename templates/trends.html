@@ -32,6 +32,7 @@
         li a:hover {
             background-color: #111111;
         }
+
         h1 {
             display: block;
             color: white;
@@ -50,22 +51,37 @@
         <li> <a href='/trends'>Trends</a></li>
         <li> <a href='/pull'>Update Server</a></li>
     </ul>
-    <section>
-        <h2>Youtube</h2>
-        <p>{{yt_titles}}</p>
-    </section>
-    <section>
-        <h2>Reddit</h2>
-        <p>{{reddit_trends}}</p>
-    </section>
-    <section>
-        <h2>Twitter</h2>
-        <p>Twitter placeholder</p>
-    </section>
-    <section>
-        <h2>Films</h2>
-        <p>{{movies_list}}</p>
-    </section>
+
+    <h2>Youtube</h2>
+    <div class="youtube_section">
+        {% for title in yt_titles %}
+        <p class="youtube_titles_style">{{title}}</p>
+        {% endfor %}
+    </div>
+
+    <h2>Films</h2>
+    <div class="movies_section">
+        {% for movie, poster in movies_list %}
+        <a class="movies_item">
+            <img src={{poster}} width=100 alt={{movie}}>
+            <p>{{movie}}</p>
+        </a>
+        {% endfor %}
+    </div>
+
+    <h2>Twitter</h2>
+    <div class="twitter_section">
+        {% for title in yt_titles %}
+        <p class="twitter_trends_style">Twitter placeholder</p>
+        {% endfor %}
+    </div>
+
+    <h2>Reddit</h2>
+    <div class="reddit_section">
+        {% for reddit_trend in reddit_trends %}
+        <p class="reddit_trends_style">{{reddit_trend}}</p>
+        {% endfor %}
+    </div>
 </body>
 
 </html>

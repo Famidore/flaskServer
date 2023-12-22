@@ -31,6 +31,76 @@ body {
 
 .button:focus {
     outline-color: transparent;
-    outline-style:solid;
+    outline-style: solid;
     box-shadow: 0 0 0 4px #5a01a7;
+}
+
+h2 {
+    display: block;
+    padding: 10px;
+    justify-content: center;
+}
+
+.youtube_titles_style {
+    justify-content: center;
+    padding: 5px;
+}
+
+.reddit_trends_style {
+    justify-content: center;
+    padding: 5px;
+}
+
+.twitter_trends_style {
+    justify-content: center;
+    padding: 5px;
+}
+
+.movies_titles_style {
+    justify-content: center;
+    padding: 5px;
+}
+
+.movies_posters_style {
+    justify-content: center;
+    padding: 5px;
+}
+
+.youtube_section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reddit_section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.twitter_section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.movies_section {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    direction: ltr;
+}
+
+.movies_section img {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.movies_item {
+    text-align: center;
+    margin: 10px;
+    max-width: 200px;
+    display: inline-block;
 }

@@ -48,19 +48,28 @@ def pull():
 @app.route("/trends", methods=["POST", "GET"])
 def trends():
     movies_list = []
+    movies_posters = []
+    movies_links = []
     reddit_trends = []
 
-    for i in get_movies_list():
+    t, p, l = get_movies_list()
+
+    for i, j in zip(t, p):
         if (i.text) not in movies_list:
             movies_list.append(i.text)
+        if j["src"] not in movies_posters:
+            movies_posters.append(j["src"])
+        # if k["href"] not in movies_links:
+        #     movies_posters.append("https://www.filmweb.pl" + k["href"])
 
     n, s = get_reddit_trends()
     for i, j in zip(n, s):
-        reddit_trends.append([i.text, j.text])
+        reddit_trends.append((i.text, j.text))
 
     return render_template(
         "trends.html",
-        movies_list=movies_list,
+        movies_list=zip(movies_list, movies_posters),
+        # movies_posters=movies_posters,
         yt_titles=get_youtube_trending_videos(api_key),
         reddit_trends=reddit_trends,
     )
