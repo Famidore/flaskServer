@@ -30,11 +30,14 @@ def time():
 @app.route("/pull", methods=["POST", "GET"])
 def pull():
     try:
-        subprocess.run(["git", "pull"], check=True)
-        subprocess.run(["pip", "install", "-r", "requirements.txt"], check=True)
+        subprocess.run(["git", "pull"], timeout=10, check=True)
+        subprocess.run(
+            ["pip", "install", "-r", "requirements.txt"], timeout=10, check=True
+        )
         result = "Server update successfull!"
     except subprocess.CalledProcessError as err:
         result = f"Error during server update: {err.output.decode()}"
+        return render_template("pulling.html", result=result)
 
     return render_template("pulling.html", result=result)
 
