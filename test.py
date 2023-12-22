@@ -7,6 +7,8 @@ from youtube import obtain_key, get_youtube_trending_videos
 
 app = Flask(__name__)
 
+api_key = obtain_key()
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -51,7 +53,7 @@ def trends():
     return render_template(
         "trends.html",
         movies_list=movies_list,
-        yt_titles=get_youtube_trending_videos(obtain_key()),
+        yt_titles=get_youtube_trending_videos(api_key),
     )
 
 

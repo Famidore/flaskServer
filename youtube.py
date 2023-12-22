@@ -6,13 +6,19 @@ def obtain_key():
     try:
         with open(file_path, "r") as file:
             api_key = file.read()
+            if api_key == "":
+                api_key = input("The file is empty\nWrite your api key here: ")
+                with open(file_path, "w") as fw:
+                    fw.write(api_key)
     except FileNotFoundError:
-        api_key = ""
         f = open(file_path, "a")
-        print("\nEnter your api key in the 'api_key.txt' file")
+        api_key = input(
+            "\nEnter your api key in the 'api_key.txt' file\nOr write it here: "
+        )
+        f.write(api_key)
     except Exception as e:
         api_key = ""
-        print(f"An error occurred: {e}")
+        print(f"An error occurred when reading api key: {e}")
     return api_key
 
 
