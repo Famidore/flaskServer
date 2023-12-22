@@ -4,6 +4,7 @@ import os
 import subprocess
 from movies import get_movies_list
 from youtube import obtain_key, get_youtube_trending_videos
+from reddit import get_reddit_trends
 
 app = Flask(__name__)
 
@@ -47,13 +48,21 @@ def pull():
 @app.route("/trends", methods=["POST", "GET"])
 def trends():
     movies_list = []
+    reddit_trends = []
+
     for i in get_movies_list():
         if (i.text) not in movies_list:
             movies_list.append(i.text)
+
+    n, s = get_reddit_trends()
+    for i, j in zip(n, s):
+        reddit_trends.append([i.text, j.text])
+
     return render_template(
         "trends.html",
         movies_list=movies_list,
         yt_titles=get_youtube_trending_videos(api_key),
+        reddit_trends=reddit_trends,
     )
 
 
