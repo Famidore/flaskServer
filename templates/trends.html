@@ -61,8 +61,8 @@
 
     <h2>Films</h2>
     <div class="movies_section">
-        {% for movie, poster in movies_list %}
-        <a class="movies_item">
+        {% for movie, poster, link in movies_list %}
+        <a href={{link}} class="movies_item">
             <img src={{poster}} width=100 alt={{movie}}>
             <p>{{movie}}</p>
         </a>

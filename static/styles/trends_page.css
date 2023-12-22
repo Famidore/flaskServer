@@ -103,4 +103,6 @@ h2 {
     margin: 10px;
     max-width: 200px;
     display: inline-block;
+    text-decoration: none;
+    color: white;
 }

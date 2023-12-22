@@ -11,10 +11,10 @@ def get_movies_list():
     imgs = soup.find_all(class_="simplePoster__image")
     links = soup.find_all(class_="simplePoster__title")
 
-    # for i in links:
-    #     print(i["href"])
+    # for i, j, k in zip(titles, imgs, links):
+    #     print(i.text, j["src"], k["href"])
 
     return titles, imgs, links
 
 
-# get_movies_list()
+get_movies_list()
