@@ -3,6 +3,7 @@ from datetime import datetime
 import os
 import subprocess
 from movies import get_movies_list
+from youtube import obtain_key, get_youtube_trending_videos
 
 app = Flask(__name__)
 
@@ -44,7 +45,11 @@ def trends():
     for i in get_movies_list():
         if (i.text) not in movies_list:
             movies_list.append(i.text)
-    return render_template("trends.html", movies_list=movies_list)
+    return render_template(
+        "trends.html",
+        movies_list=movies_list,
+        yt_titles=get_youtube_trending_videos(obtain_key()),
+    )
 
 
 if __name__ == "__main__":

@@ -52,7 +52,7 @@ coverage.xml
 cover/
 
 flaskServer/
-
+api_key.txt
 # Translations
 *.mo
 *.pot
