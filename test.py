@@ -42,7 +42,8 @@ def pull():
 def trends():
     movies_list = []
     for i in get_movies_list():
-        movies_list.append(i.text)
+        if (i.text) not in movies_list:
+            movies_list.append(i.text)
     return render_template("trends.html", movies_list=movies_list)
 
 
