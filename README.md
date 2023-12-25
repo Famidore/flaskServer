@@ -7,6 +7,20 @@
 ## About
 This is an excercise project...
 
+## Features
+
+### Youtube trending page
+Scroll through youtube trending videos and shorts *(Work in progress)*
+
+### Movies
+Check out news about movies and stuff *(Work in progress)*
+
+### Twitter
+*(Work in progress)*
+
+### Reddit
+See reddit trending posts *(Work in progress)*
+
 ## Usage
 
 ### Install requirements
