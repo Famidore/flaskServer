@@ -37,10 +37,16 @@ def get_youtube_trending_videos(api_key, region_code="PL", max_results=10):
     )
 
     titles = []
+    imgs = []
+    urls = []
+
     for video in response["items"]:
         snippet = video["snippet"]
         titles.append(snippet["title"])
-    return titles
+        imgs.append(snippet["thumbnails"]["high"]["url"])
+        urls.append("https://www.youtube.com/watch?v=" + str(video["id"]))
+
+    return titles, imgs, urls
 
 
 get_youtube_trending_videos(obtain_key())

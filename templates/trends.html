@@ -53,9 +53,12 @@
     </ul>
 
     <h2>Youtube</h2>
-    <div class="youtube_section">
-        {% for title in yt_titles %}
-        <p class="youtube_titles_style">{{title}}</p>
+    <div class="movies_section">
+        {% for title, img, url in yt_data %}
+        <a href={{url}} class="movies_item">
+            <img src={{img}} width=100 alt={{title}}>
+            <p>{{title}}</p>
+        </a>
         {% endfor %}
     </div>
 

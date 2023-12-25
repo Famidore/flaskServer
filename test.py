@@ -62,9 +62,7 @@ def trends():
         if k["href"] not in movies_links:
             movies_links.append("https://www.filmweb.pl" + str(k["href"]))
 
-    # for k in l:
-    #     if k["href"] not in movies_links:
-    #         movies_links.append(k["href"])
+    yt_titles, yt_imgs, yt_urls = get_youtube_trending_videos(api_key)
 
     n, s = get_reddit_trends()
     for i, j in zip(n, s):
@@ -74,7 +72,7 @@ def trends():
         "trends.html",
         movies_list=zip(movies_list, movies_posters, movies_links),
         # movies_links=movies_links,
-        yt_titles=get_youtube_trending_videos(api_key),
+        yt_data=zip(yt_titles, yt_imgs, yt_urls),
         reddit_trends=reddit_trends,
     )
 
