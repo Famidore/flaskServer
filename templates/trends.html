@@ -53,9 +53,9 @@
     </ul>
 
     <h2>Youtube</h2>
-    <div class="movies_section">
+    <div class="yt_section">
         {% for title, img, url in yt_data %}
-        <a href={{url}} target="_blank" class="movies_item">
+        <a href={{url}} target="_blank" class="yt_item">
             <img src={{img}} width=100 alt={{title}}>
             <p>{{title}}</p>
         </a>
@@ -81,10 +81,12 @@
 
     <h2>Reddit</h2>
     <div class="reddit_section">
-        {% for title, sub, url, img in reddit_trends %}
+        {% for title, sub, url, img, descs in reddit_trends %}
         <a href={{url}} target="_blank" class="reddit_item">
+            <p>{{title}}</p>
             <img src={{img}} width=100 alt={{title}}>
-            <p>{{title}} {{sub}}</p>
+            <p>{{descs}}</p>
+            <p>{{sub}}</p>
         </a>
         {% endfor %}
     </div>

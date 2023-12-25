@@ -49,13 +49,13 @@ def pull():
 def trends():
     movies_list, movies_posters, movies_links = get_movies_list()
     yt_titles, yt_imgs, yt_urls = get_youtube_trending_videos(api_key)
-    rd_titles, rd_src, rd_link, rd_img = get_reddit_trends()
+    rd_titles, rd_src, rd_link, rd_img, rd_descs = get_reddit_trends()
 
     return render_template(
         "trends.html",
         movies_list=zip(movies_list, movies_posters, movies_links),
         yt_data=zip(yt_titles, yt_imgs, yt_urls),
-        reddit_trends=zip(rd_titles, rd_src, rd_link, rd_img),
+        reddit_trends=zip(rd_titles, rd_src, rd_link, rd_img, rd_descs),
     )
 
 

@@ -47,6 +47,29 @@ h2 {
     align-items: center;
 }
 
+.yt_section {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    direction: ltr;
+}
+
+.yt_section img {
+    width: 250px;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.yt_item {
+    text-align: center;
+    margin: 10px;
+    max-width: 250px;
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+}
+
 .movies_section {
     display: flex;
     flex-wrap: nowrap;
