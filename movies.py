@@ -11,10 +11,20 @@ def get_movies_list():
     imgs = soup.find_all(class_="simplePoster__image")
     links = soup.find_all(class_="simplePoster__title")
 
-    # for i, j, k in zip(titles, imgs, links):
-    #     print(i.text, j["src"], k["href"])
+    titles_text = []
+    imgs_text = []
+    links_text = []
 
-    return titles, imgs, links
+    for i, j, k in zip(titles, imgs, links):
+        if (i.text) not in titles_text:
+            titles_text.append(i.text)
+        if j["src"] not in imgs_text:
+            imgs_text.append(j["src"])
+        if k["href"] not in links_text:
+            links_text.append("https://www.filmweb.pl" + str(k["href"]))
+
+    return titles_text, imgs_text, links_text
 
 
-get_movies_list()
+if __name__ == "__main__":
+    get_movies_list()

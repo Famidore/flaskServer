@@ -41,43 +41,6 @@ h2 {
     justify-content: center;
 }
 
-.youtube_titles_style {
-    justify-content: center;
-    padding: 5px;
-}
-
-.reddit_trends_style {
-    justify-content: center;
-    padding: 5px;
-}
-
-.twitter_trends_style {
-    justify-content: center;
-    padding: 5px;
-}
-
-.movies_titles_style {
-    justify-content: center;
-    padding: 5px;
-}
-
-.movies_posters_style {
-    justify-content: center;
-    padding: 5px;
-}
-
-.youtube_section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.reddit_section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .twitter_section {
     display: flex;
     justify-content: center;
@@ -102,6 +65,29 @@ h2 {
     text-align: center;
     margin: 10px;
     max-width: 200px;
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+}
+
+.reddit_section {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    direction: ltr;
+}
+
+.reddit_section img {
+    width: 300px;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.reddit_item {
+    text-align: center;
+    margin: 10px;
+    max-width: 300px;
     display: inline-block;
     text-decoration: none;
     color: white;

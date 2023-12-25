@@ -55,7 +55,7 @@
     <h2>Youtube</h2>
     <div class="movies_section">
         {% for title, img, url in yt_data %}
-        <a href={{url}} class="movies_item">
+        <a href={{url}} target="_blank" class="movies_item">
             <img src={{img}} width=100 alt={{title}}>
             <p>{{title}}</p>
         </a>
@@ -65,7 +65,7 @@
     <h2>Films</h2>
     <div class="movies_section">
         {% for movie, poster, link in movies_list %}
-        <a href={{link}} class="movies_item">
+        <a href={{link}} target="_blank" class="movies_item">
             <img src={{poster}} width=100 alt={{movie}}>
             <p>{{movie}}</p>
         </a>
@@ -81,8 +81,11 @@
 
     <h2>Reddit</h2>
     <div class="reddit_section">
-        {% for reddit_trend in reddit_trends %}
-        <p class="reddit_trends_style">{{reddit_trend}}</p>
+        {% for title, sub, url, img in reddit_trends %}
+        <a href={{url}} target="_blank" class="reddit_item">
+            <img src={{img}} width=100 alt={{title}}>
+            <p>{{title}} {{sub}}</p>
+        </a>
         {% endfor %}
     </div>
 </body>

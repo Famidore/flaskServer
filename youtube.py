@@ -49,4 +49,5 @@ def get_youtube_trending_videos(api_key, region_code="PL", max_results=10):
     return titles, imgs, urls
 
 
-get_youtube_trending_videos(obtain_key())
+if __name__ == "__main__":
+    get_youtube_trending_videos(obtain_key())
