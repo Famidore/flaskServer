@@ -1,8 +1,7 @@
 from googleapiclient.discovery import build
 
 
-def obtain_key():
-    file_path = "api_key.txt"
+def obtain_key(file_path: str):
     try:
         with open(file_path, "r") as file:
             api_key = file.read()
@@ -50,4 +49,4 @@ def get_youtube_trending_videos(api_key, region_code="PL", max_results=10):
 
 
 if __name__ == "__main__":
-    get_youtube_trending_videos(obtain_key())
+    get_youtube_trending_videos(obtain_key(file_path="api_key.txt"))

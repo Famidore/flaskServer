@@ -53,6 +53,7 @@ cover/
 
 flaskServer/
 api_key.txt
+twitter_token.txt
 # Translations
 *.mo
 *.pot

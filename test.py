@@ -8,7 +8,8 @@ from reddit import get_reddit_trends
 
 app = Flask(__name__)
 
-api_key = obtain_key()
+yt_api_key = obtain_key(file_path="api_key.txt")
+twitter_token = obtain_key(file_path="twitter_token.txt")
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -48,7 +49,7 @@ def pull():
 @app.route("/trends", methods=["POST", "GET"])
 def trends():
     movies_list, movies_posters, movies_links = get_movies_list()
-    yt_titles, yt_imgs, yt_urls = get_youtube_trending_videos(api_key)
+    yt_titles, yt_imgs, yt_urls = get_youtube_trending_videos(yt_api_key)
     rd_titles, rd_src, rd_link, rd_img, rd_descs = get_reddit_trends()
 
     return render_template(

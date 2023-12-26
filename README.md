@@ -27,8 +27,11 @@ See reddit trending posts *(Work in progress)*
 To install requirements use: <br>
 `pip install -r requirements.txt`
 
-### Api key
+### Youtube api key
 Before starting the program obtain a valid [Youtube API key](https://developers.google.com/youtube/v3).
+
+### Twitter bearer token
+Obtain a valid [Twitter bearer token](https://developer.twitter.com/en/portal/projects-and-apps).
 
 ### Run the program
 Either start the script in VSC or use this command: <br>
