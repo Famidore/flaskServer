@@ -41,10 +41,26 @@ h2 {
     justify-content: center;
 }
 
-.twitter_section {
+.wykop_section {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    direction: ltr;
+}
+
+.wykop_item {
+    text-align: center;
+    margin: 10px;
+    max-height: 500px;
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    transition: all .2s ease-in-out;
+}
+
+.wykop_item:hover {
+    background-color: #383838;
+    transform: scale(1.1);
 }
 
 .yt_section {
@@ -52,6 +68,7 @@ h2 {
     flex-wrap: nowrap;
     overflow-x: auto;
     direction: ltr;
+    overflow-y: hidden;
 }
 
 .yt_section img {
@@ -68,6 +85,12 @@ h2 {
     display: inline-block;
     text-decoration: none;
     color: white;
+    transition: all .2s ease-in-out;
+}
+
+.yt_item:hover {
+    background-color: #383838;
+    transform: scale(1.1);
 }
 
 .movies_section {
@@ -75,6 +98,7 @@ h2 {
     flex-wrap: nowrap;
     overflow-x: auto;
     direction: ltr;
+    overflow-y: hidden;
 }
 
 .movies_section img {
@@ -91,6 +115,12 @@ h2 {
     display: inline-block;
     text-decoration: none;
     color: white;
+    transition: all .2s ease-in-out;
+}
+
+.movies_item:hover {
+    background-color: #383838;
+    transform: scale(1.1);
 }
 
 .reddit_section {
@@ -98,10 +128,12 @@ h2 {
     flex-wrap: nowrap;
     overflow-x: auto;
     direction: ltr;
+    overflow-y: hidden;
 }
 
 .reddit_section img {
-    width: 300px;
+    align-self: center;
+    width: 100%;
     height: auto;
     display: block;
     margin-bottom: 10px;
@@ -110,8 +142,16 @@ h2 {
 .reddit_item {
     text-align: center;
     margin: 10px;
-    max-width: 300px;
+    width: 300px;
+    height: auto;
     display: inline-block;
     text-decoration: none;
     color: white;
+    transition: all .2s ease-in-out;
+    overflow: hidden;
+}
+
+.reddit_item:hover {
+    background-color: #383838;
+    transform: scale(1.1);
 }

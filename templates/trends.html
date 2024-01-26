@@ -73,10 +73,10 @@
     </div>
 
     <h2>Wykop</h2>
-    <div class="yt_section">
+    <div class="wykop_section">
         {% for title, img_src, link in wykop_titles %}
-        <a href={{link}} target="_blank" class="yt_item">
-            <img src={{img_src}} width=100 alt={{title}}>
+        <a href={{link}} target="_blank" class="wykop_item">
+            <img src={{img_src}} alt={{title}}>
             <p>{{title}}</p>
         </a>
         {% endfor %}
@@ -87,7 +87,7 @@
         {% for title, sub, url, img, descs in reddit_trends %}
         <a href={{url}} target="_blank" class="reddit_item">
             <p>{{title}}</p>
-            <img src={{img}} width=100 alt={{title}}>
+            <img src={{img}} alt={{title}}>
             <p>{{descs}}</p>
             <p>{{sub}}</p>
         </a>
