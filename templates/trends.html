@@ -74,8 +74,11 @@
 
     <h2>Wykop</h2>
     <div class="yt_section">
-        {% for title in wykop_titles %}
-        <p>{{title}}</p>
+        {% for title, img_src, link in wykop_titles %}
+        <a href={{link}} target="_blank" class="yt_item">
+            <img src={{img_src}} width=100 alt={{title}}>
+            <p>{{title}}</p>
+        </a>
         {% endfor %}
     </div>
 
