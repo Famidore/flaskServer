@@ -1,24 +1,5 @@
 from googleapiclient.discovery import build
-
-
-def obtain_key(file_path: str):
-    try:
-        with open(file_path, "r") as file:
-            api_key = file.read()
-            if api_key == "":
-                api_key = input("The file is empty\nWrite your api key here: ")
-                with open(file_path, "w") as fw:
-                    fw.write(api_key)
-    except FileNotFoundError:
-        f = open(file_path, "a")
-        api_key = input(
-            "\nEnter your api key in the 'api_key.txt' file\nOr write it here: "
-        )
-        f.write(api_key)
-    except Exception as e:
-        api_key = ""
-        print(f"An error occurred when reading api key: {e}")
-    return api_key
+from utils import obtain_key
 
 
 def get_youtube_trending_videos(api_key, region_code="PL", max_results=10):
@@ -49,4 +30,4 @@ def get_youtube_trending_videos(api_key, region_code="PL", max_results=10):
 
 
 if __name__ == "__main__":
-    get_youtube_trending_videos(obtain_key(file_path="api_key.txt"))
+    get_youtube_trending_videos(obtain_key(file_path="keys.json", mode="youtube_key"))

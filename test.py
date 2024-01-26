@@ -3,13 +3,13 @@ from datetime import datetime
 import os
 import subprocess
 from movies import get_movies_list
-from youtube import obtain_key, get_youtube_trending_videos
+from youtube import get_youtube_trending_videos
 from reddit import get_reddit_trends
+from utils import obtain_key
 
 app = Flask(__name__)
 
-yt_api_key = obtain_key(file_path="api_key.txt")
-twitter_token = obtain_key(file_path="twitter_token.txt")
+yt_api_key = obtain_key(mode="youtube_key")
 
 
 @app.route("/", methods=["GET", "POST"])

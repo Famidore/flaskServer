@@ -35,6 +35,7 @@ MANIFEST
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
+flaskVenv
 
 # Unit test / coverage reports
 htmlcov/
@@ -54,6 +55,7 @@ cover/
 flaskServer/
 api_key.txt
 twitter_token.txt
+keys.json
 # Translations
 *.mo
 *.pot
