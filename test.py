@@ -6,6 +6,7 @@ from movies import get_movies_list
 from youtube import get_youtube_trending_videos
 from reddit import get_reddit_trends
 from utils import obtain_key
+from wykop import get_wykop_trends
 
 app = Flask(__name__)
 
@@ -51,12 +52,14 @@ def trends():
     movies_list, movies_posters, movies_links = get_movies_list()
     yt_titles, yt_imgs, yt_urls = get_youtube_trending_videos(yt_api_key)
     rd_titles, rd_src, rd_link, rd_img, rd_descs = get_reddit_trends()
+    wykop_titles = get_wykop_trends()
 
     return render_template(
         "trends.html",
         movies_list=zip(movies_list, movies_posters, movies_links),
         yt_data=zip(yt_titles, yt_imgs, yt_urls),
         reddit_trends=zip(rd_titles, rd_src, rd_link, rd_img, rd_descs),
+        wykop_titles=wykop_titles,
     )
 
 
