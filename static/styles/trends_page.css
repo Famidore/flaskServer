@@ -46,6 +46,7 @@ h2 {
     flex-wrap: nowrap;
     overflow-x: auto;
     direction: ltr;
+    overflow-y: hidden;
 }
 
 .wykop_item {

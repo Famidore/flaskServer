@@ -63,5 +63,15 @@ def trends():
     )
 
 
+@app.route("/reddit-inspect", methods=["POST", "GET"])
+def reddit_inspect():
+    return render_template("reddit_inspect.html")
+
+
+@app.route("/wykop-inspect", methods=["POST", "GET"])
+def wykop_inspect():
+    return render_template("wykop_inspect.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
