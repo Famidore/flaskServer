@@ -15,7 +15,7 @@ Scroll through youtube trending videos and shorts *(Work in progress)*
 ### Movies
 Check out news about movies and stuff *(Work in progress)*
 
-### Twitter
+### Wykop info
 *(Work in progress)*
 
 ### Reddit
@@ -29,9 +29,6 @@ To install requirements use: <br>
 
 ### Youtube api key
 Before starting the program obtain a valid [Youtube API key](https://developers.google.com/youtube/v3).
-
-### Twitter bearer token
-Obtain a valid [Twitter bearer token](https://developer.twitter.com/en/portal/projects-and-apps).
 
 ### Run the program
 Either start the script in VSC or use this command: <br>

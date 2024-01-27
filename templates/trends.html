@@ -58,7 +58,7 @@
     <div class="yt_section">
         {% for title, img, url in yt_data %}
         <a href={{url}} target="_blank" class="yt_item">
-            <img src={{img}} width=100 alt={{title}}>
+            <img loading="lazy" src={{img}} width=100 alt={{title}}>
             <p>{{title}}</p>
         </a>
         {% endfor %}
@@ -68,7 +68,7 @@
     <div class="movies_section">
         {% for movie, poster, link in movies_list %}
         <a href={{link}} target="_blank" class="movies_item">
-            <img src={{poster}} width=100 alt={{movie}}>
+            <img loading="lazy" src={{poster}} width=100 alt={{movie}}>
             <p>{{movie}}</p>
         </a>
         {% endfor %}
@@ -78,7 +78,7 @@
     <div class="wykop_section">
         {% for title, img_src, link in wykop_titles %}
         <a href={{link}} target="_blank" class="wykop_item">
-            <img src={{img_src}} alt={{title}}>
+            <img loading="lazy" src={{img_src}} alt={{title}}>
             <p>{{title}}</p>
         </a>
         {% endfor %}
@@ -89,7 +89,7 @@
         {% for title, sub, url, img, descs in reddit_trends %}
         <a href={{url}} target="_blank" class="reddit_item">
             <p>{{title}}</p>
-            <img src={{img}} alt={{title}}>
+            <img loading="lazy" src={{img}} alt={{title}}>
             <p>{{descs}}</p>
             <p>{{sub}}</p>
         </a>
