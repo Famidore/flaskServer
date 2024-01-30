@@ -65,7 +65,6 @@ def trends():
     rd_titles, rd_src, rd_link, rd_img, rd_descs = t_rd.join()
     wykop_titles, wykop_imgs, wykop_links = t_wykop.join()
 
-    print(threading.Thread(target=get_wykop_trends))
     return render_template(
         "trends.html",
         movies_list=zip(movies_list, movies_posters, movies_links),
