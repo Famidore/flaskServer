@@ -5,8 +5,9 @@ import subprocess
 from movies import get_movies_list
 from youtube import get_youtube_trending_videos
 from reddit import get_reddit_trends
-from utils import obtain_key
+from utils import obtain_key, threadReturn
 from wykop import get_wykop_trends
+import threading
 
 app = Flask(__name__)
 
@@ -49,11 +50,22 @@ def pull():
 
 @app.route("/trends", methods=["POST", "GET"])
 def trends():
-    movies_list, movies_posters, movies_links = get_movies_list()
-    yt_titles, yt_imgs, yt_urls = get_youtube_trending_videos(yt_api_key)
-    rd_titles, rd_src, rd_link, rd_img, rd_descs = get_reddit_trends()
-    wykop_titles, wykop_imgs, wykop_links = get_wykop_trends()
+    t_yt = threadReturn(target=get_youtube_trending_videos, args=(yt_api_key,))
+    t_rd = threadReturn(target=get_reddit_trends)
+    t_wykop = threadReturn(target=get_wykop_trends)
+    t_movies = threadReturn(target=get_movies_list)
 
+    t_yt.start()
+    t_rd.start()
+    t_wykop.start()
+    t_movies.start()
+
+    movies_list, movies_posters, movies_links = t_movies.join()
+    yt_titles, yt_imgs, yt_urls = t_yt.join()
+    rd_titles, rd_src, rd_link, rd_img, rd_descs = t_rd.join()
+    wykop_titles, wykop_imgs, wykop_links = t_wykop.join()
+
+    print(threading.Thread(target=get_wykop_trends))
     return render_template(
         "trends.html",
         movies_list=zip(movies_list, movies_posters, movies_links),
