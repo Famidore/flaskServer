@@ -29,7 +29,3 @@ To install requirements use: <br>
 
 ### Youtube api key
 Before starting the program obtain a valid [Youtube API key](https://developers.google.com/youtube/v3).
-
-### Run the program
-Either start the script in VSC or use this command: <br>
-`flask --app test run --host=0.0.0.0`

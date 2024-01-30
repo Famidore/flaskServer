@@ -37,8 +37,6 @@ def get_wykop_trends():
         if str(img["src"]) not in imgs_text:
             imgs_text.append(str(img["src"]))
 
-    print(len(titles_text), len(imgs_text), len(links_text))
-
     return titles_text, imgs_text, links_text
 
 
