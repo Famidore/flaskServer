@@ -52,10 +52,10 @@ async def pull():
 
 @app.route("/trends", methods=["POST", "GET"])
 async def trends():
-    t_yt = await threadReturn(target=get_youtube_trending_videos, args=(yt_api_key,))
-    t_rd = await threadReturn(target=get_reddit_trends)
-    t_wykop = await threadReturn(target=get_wykop_trends)
-    t_movies = await threadReturn(target=get_movies_list)
+    t_yt = threadReturn(target=get_youtube_trending_videos, args=(yt_api_key,))
+    t_rd = threadReturn(target=get_reddit_trends)
+    t_wykop = threadReturn(target=get_wykop_trends)
+    t_movies = threadReturn(target=get_movies_list)
 
     t_yt.start()
     t_rd.start()
