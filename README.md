@@ -29,3 +29,7 @@ To install requirements use: <br>
 
 ### Youtube api key
 Before starting the program obtain a valid [Youtube API key](https://developers.google.com/youtube/v3).
+
+### Generate keys file
+Create a `keys.json` file & enter the youtube API key as follows:
+`{"youtube_key": "<API_key>"}`
