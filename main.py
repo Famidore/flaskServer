@@ -2,12 +2,13 @@ from flask import send_from_directory
 from quart import Quart, render_template, websocket
 from datetime import datetime
 import os
-import subprocess
-from movies import get_movies_list
-from youtube import get_youtube_trending_videos
-from reddit import get_reddit_trends
-from utils import obtain_key, threadReturn
-from wykop import get_wykop_trends
+
+# import subprocess
+from src.movies import get_movies_list
+from src.youtube import get_youtube_trending_videos
+from src.reddit import get_reddit_trends
+from src.utils import obtain_key, threadReturn
+from src.wykop import get_wykop_trends
 import asyncio
 
 
@@ -35,19 +36,19 @@ async def time():
     return await render_template("time.html")
 
 
-@app.route("/pull", methods=["POST", "GET"])
-async def pull():
-    try:
-        subprocess.run(["git", "pull"], timeout=10, check=True)
-        subprocess.run(
-            ["pip", "install", "-r", "requirements.txt"], timeout=10, check=True
-        )
-        result = "Server update successfull!"
-    except subprocess.CalledProcessError as err:
-        result = f"Error during server update: {err.output.decode()}"
-        return render_template("pulling.html", result=result)
+# @app.route("/pull", methods=["POST", "GET"])
+# async def pull():
+#     try:
+#         subprocess.run(["git", "pull"], timeout=10, check=True)
+#         subprocess.run(
+#             ["pip", "install", "-r", "requirements.txt"], timeout=10, check=True
+#         )
+#         result = "Server update successfull!"
+#     except subprocess.CalledProcessError as err:
+#         result = f"Error during server update: {err.output.decode()}"
+#         return render_template("pulling.html", result=result)
 
-    return await render_template("pulling.html", result=result)
+#     return await render_template("pulling.html", result=result)
 
 
 @app.route("/trends", methods=["POST", "GET"])

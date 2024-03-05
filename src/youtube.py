@@ -1,5 +1,5 @@
 from googleapiclient.discovery import build
-from utils import obtain_key
+from src.utils import obtain_key
 
 
 def get_youtube_trending_videos(api_key, region_code="PL", max_results=10):

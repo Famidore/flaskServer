@@ -41,4 +41,6 @@ def get_wykop_trends():
 
 
 if __name__ == "__main__":
-    get_wykop_trends()
+    x2, y2, z2 = get_wykop_trends()
+    for x, y, z in zip(x2, y2, z2):
+        print(f"\n\n{x} \n {y} \n {z} \n\n")
