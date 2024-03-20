@@ -32,6 +32,7 @@
         li a:hover {
             background-color: #111111;
         }
+
         h1 {
             display: block;
             color: white;
@@ -48,10 +49,18 @@
         <li> <a href='/'>Home</a></li>
         <li> <a href='/time'>Time</a></li>
         <li> <a href='/trends'>Trends</a></li>
-        <!-- <li> <a href='/pull'>Update Server</a></li> -->
         <li> <a href='/reddit-inspect'>Reddit</a></li>
         <li> <a href='/wykop-inspect'>Wykop</a></li>
+        <li> <a href='/login'>Log in</a></li>
+        <li> <a href='/signup'>Sign up</a></li>
     </ul>
+
+    <div>
+        <div>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
 
 </body>
 

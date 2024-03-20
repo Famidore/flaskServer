@@ -1,58 +1,29 @@
-<!DOCTYPE html>
-<html>
+{% extends "index.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FamServ</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='squid.ico') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/main_page.css') }}">
-    <style>
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #333333;
-        }
+    {% block content %}
+    <div class="column is-4 is-offset-4">
+        <h3 class="title">Login</h3>
+        <div class="box">
+            <form method="POST" action="/login">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="email" name="email" placeholder="Your Email" autofocus="">
+                    </div>
+                </div>
 
-        li {
-            float: left;
-        }
-
-        li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 16px;
-            text-decoration: none;
-        }
-
-        li a:hover {
-            background-color: #111111;
-        }
-        h1 {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            text-decoration: none;
-        }
-    </style>
-</head>
-
-<body>
-    <h1><a href="/" style="text-decoration: none; color: inherit;">Server</a></h1>
-    <ul>
-        <li> <a href='/'>Home</a></li>
-        <li> <a href='/time'>Time</a></li>
-        <li> <a href='/trends'>Trends</a></li>
-        <!-- <li> <a href='/pull'>Update Server</a></li> -->
-        <li> <a href='/reddit-inspect'>Reddit</a></li>
-        <li> <a href='/wykop-inspect'>Wykop</a></li>
-    </ul>
-
-</body>
-
-</html>
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="password" name="password" placeholder="Your Password">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="checkbox">
+                        <input type="checkbox" name="remember">
+                        Remember me
+                    </label>
+                </div>
+                <button class="button is-block is-info is-large is-fullwidth">Login</button>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
