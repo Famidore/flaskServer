@@ -1,37 +1,38 @@
 from flask import send_from_directory
+from flask_sqlalchemy import SQLAlchemy
 from quart import Quart, render_template, websocket
-from datetime import datetime
+from quart import Blueprint
 import os
-
-# import subprocess
-from src.movies import get_movies_list
-from src.youtube import get_youtube_trending_videos
-from src.reddit import get_reddit_trends
+from src.pages.movies import get_movies_list
+from src.pages.youtube import get_youtube_trending_videos
+from src.pages.reddit import get_reddit_trends
 from src.utils import obtain_key, threadReturn
-from src.wykop import get_wykop_trends
-import asyncio
+from src.pages.wykop import get_wykop_trends
 
 
-app = Quart(__name__)
+db = SQLAlchemy()
+
+main = Blueprint("main", __name__)
+
 
 yt_api_key = obtain_key(mode="youtube_key")
 
 
-@app.route("/", methods=["GET", "POST"])
+@main.route("/", methods=["GET", "POST"])
 async def index():
     return await render_template("index.html")
 
 
-@app.route("/favicon.ico")
+@main.route("/favicon.ico")
 async def favicon():
     return await send_from_directory(
-        os.path.join(app.root_path, "static"),
+        os.path.join(main.root_path, "static"),
         "squid.ico",
         mimetype="image/vnd.microsoft.icon",
     )
 
 
-@app.route("/time", methods=["GET", "POST"])
+@main.route("/time", methods=["GET", "POST"])
 async def time():
     return await render_template("time.html")
 
@@ -51,7 +52,7 @@ async def time():
 #     return await render_template("pulling.html", result=result)
 
 
-@app.route("/trends", methods=["POST", "GET"])
+@main.route("/trends", methods=["POST", "GET"])
 async def trends():
     t_yt = threadReturn(target=get_youtube_trending_videos, args=(yt_api_key,))
     t_rd = threadReturn(target=get_reddit_trends)
@@ -77,15 +78,11 @@ async def trends():
     )
 
 
-@app.route("/reddit-inspect", methods=["POST", "GET"])
+@main.route("/reddit-inspect", methods=["POST", "GET"])
 async def reddit_inspect():
-    return await render_template("reddit_inspect.html")
+    return await render_template("media/reddit_inspect.html")
 
 
-@app.route("/wykop-inspect", methods=["POST", "GET"])
+@main.route("/wykop-inspect", methods=["POST", "GET"])
 async def wykop_inspect():
-    return await render_template("wykop_inspect.html")
-
-
-if __name__ == "__main__":
-    asyncio.run(app.run_task(debug=True, host="0.0.0.0", port=5000))
+    return await render_template("media/wykop_inspect.html")
