@@ -1,5 +1,4 @@
-from quart import render_template
-from quart import Blueprint
+from quart import render_template, Blueprint
 from src.pages.movies import get_movies_list
 from src.pages.youtube import get_youtube_trending_videos
 from src.pages.reddit import get_reddit_trends
