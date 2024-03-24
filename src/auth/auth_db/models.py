@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime, Boolean
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.util.langhelpers import hashlib
+from sqlalchemy.orm import declarative_base
+import hashlib
 from datetime import datetime
 
 Base = declarative_base()
@@ -25,3 +25,7 @@ class User(Base):
 
     def _hash_password(self, password):
         return hashlib.sha256(password.encode()).hexdigest()
+
+    def _check_password(self, password):
+        return self.password == self._hash_password(password)
+
