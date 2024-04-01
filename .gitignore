@@ -56,6 +56,7 @@ flaskServer/
 api_key.txt
 twitter_token.txt
 keys.json
+CONFIG.json
 # Translations
 *.mo
 *.pot
