@@ -1,4 +1,16 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}Home Page{% endblock %}
+<style>
+    body {
+        background-color: #333333;
+    }
+</style>
+{% block content %}
+    <!-- include navbar.html -->
+    {% include 'partials/navbar.html' %}
+{% endblock %}
+
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -48,16 +60,11 @@
         <h1><a href="/" style="text-decoration: none; color: inherit;">Server</a></h1>
     </div>
 
-    <!-- include navbar.html -->
-    {% include 'partials/navbar.html' %}
-
     <div>
         <div>
-            {% block content %}
-            {% endblock %}
         </div>
     </div>
 
 </body>
 
-</html>
+</html> -->
