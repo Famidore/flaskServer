@@ -16,7 +16,7 @@
     {% extends "base.html" %}
     
     {% block content %}
-    <h2>Youtube</h2>
+    <h2 class="title">Youtube</h2>
     <div class="yt_section">
         {% for title, img, url in yt_data %}
         <a href={{url}} target="_blank" class="yt_item">
@@ -26,7 +26,7 @@
         {% endfor %}
     </div>
 
-    <h2>Movies</h2>
+    <h2 class="title">Movies</h2>
     <div class="movies_section">
         {% for movie, poster, link in movies_list %}
         <a href={{link}} target="_blank" class="movies_item">
@@ -36,7 +36,7 @@
         {% endfor %}
     </div>
 
-    <h2>Wykop</h2>
+    <h2 class="title">Wykop</h2>
     <div class="wykop_section">
         {% for title, img_src, link in wykop_titles %}
         <a href={{link}} target="_blank" class="wykop_item">
@@ -46,7 +46,7 @@
         {% endfor %}
     </div>
 
-    <h2>Reddit</h2>
+    <h2 class="title">Reddit</h2>
     <div class="reddit_section">
         {% for title, sub, url, img, descs in reddit_trends %}
         <a href={{url}} target="_blank" class="reddit_item">
