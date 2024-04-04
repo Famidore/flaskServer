@@ -2,14 +2,6 @@
     box-sizing: border-box;
 }
 
-body {
-    justify-content: center;
-    align-items: center;
-    margin: 50px auto;
-    background: rgb(0, 0, 0);
-    color: white;
-}
-
 .button {
     display: block;
     justify-content: center;
