@@ -30,6 +30,7 @@
         li a:hover {
             background-color: #111111;
         }
+        
         h1 {
             display: block;
             color: white;
@@ -41,15 +42,21 @@
 </head>
 
 <body>
-    <h1>Time</h1>
-    <ul>
+    <div>
+        <h1><a href="/" style="text-decoration: none; color: inherit;">Time</a></h1>
+    </div>
+    <!-- <ul>
         <li> <a href='/'>Home</a></li>
         <li> <a href='/time'>Time</a></li>
         <li> <a href='/trends'>Trends</a></li>
-        <!-- <li> <a href='/pull'>Update Server</a></li> -->
+        <li> <a href='/pull'>Update Server</a></li>
         <li> <a href='/reddit-inspect'>Reddit</a></li>
         <li> <a href='/wykop-inspect'>Wykop</a></li>
-    </ul>
+    </ul> -->
+    
+    <!-- include navbar.html -->
+    {% include 'partials/navbar.html' %}
+
 </body>
 </body>
 
