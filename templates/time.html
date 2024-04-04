@@ -1,63 +1,7 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <title>Flask Server</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='squid.ico') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/main_page.css') }}">
-    <style>
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #333333;
-            display: inline;
-        }
+{% block title %}Time{% endblock %}
 
-        li {
-            float: left;
-        }
+{% block content %}
 
-        li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 16px;
-            text-decoration: none;
-        }
-
-        li a:hover {
-            background-color: #111111;
-        }
-        
-        h1 {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            text-decoration: none;
-        }
-    </style>
-</head>
-
-<body>
-    <div>
-        <h1><a href="/" style="text-decoration: none; color: inherit;">Time</a></h1>
-    </div>
-    <!-- <ul>
-        <li> <a href='/'>Home</a></li>
-        <li> <a href='/time'>Time</a></li>
-        <li> <a href='/trends'>Trends</a></li>
-        <li> <a href='/pull'>Update Server</a></li>
-        <li> <a href='/reddit-inspect'>Reddit</a></li>
-        <li> <a href='/wykop-inspect'>Wykop</a></li>
-    </ul> -->
-    
-    <!-- include navbar.html -->
-    {% include 'partials/navbar.html' %}
-
-</body>
-</body>
-
-</html>
+{% endblock %}
