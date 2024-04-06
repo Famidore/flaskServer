@@ -1,33 +1,32 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from models import Base, User
+from models import db, User
 
 
 def register_user(name, email, password):
-    engine = create_engine('sqlite:///../../../dbs/database.db')
-    Base.metadata.create_all(engine)
-    Session = sessionmaker(bind=engine)
-    session = Session()
+    #engine = create_engine('sqlite:///../../../dbs/database.db')
+    #Base.metadata.create_all(engine)
+    #Session = sessionmaker(bind=engine)
+    #session = Session()
 
     # Check if email already exists declared in database
-    existing_email = session.query(User).filter_by(email=email).first()
+    existing_email = User.query.filter_by(email=email).first()
     if existing_email:
         print("User with this email already exists!")
         return False
 
     # Add new user to database
     new_user = User(name, email, password)
-    session.add(new_user)
-    session.commit()
+    db.session.add(new_user)
+    db.session.commit()
     print("User added successfully.")
     return True
 
+
 def login_user(name, password):
-    Session = sessionmaker(bind=engine)
-    session = Session()
+    #Session = sessionmaker(bind=engine)
+    #session = Session()
 
     # Check if user exists
-    user = session.query(User).filter_by(name=name).first()
+    user = User.query.filter_by(name=name).first()
     if user:
         # Check if password is valid
         if user._check_password(password):
@@ -39,3 +38,5 @@ def login_user(name, password):
     else:
         print("Such user does not exists!")
         return False
+
+

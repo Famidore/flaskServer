@@ -1,20 +1,18 @@
-from sqlalchemy import Column, Integer, String, DateTime, Boolean
-from sqlalchemy.orm import declarative_base
+from flask_sqlalchemy import SQLAlchemy
 import hashlib
 from datetime import datetime
 
-Base = declarative_base()
+db = SQLAlchemy()
 
-
-class User(Base):
+class User(db.Model):
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True)
-    name = Column(String(1000))
-    email = Column(String(100), unique=True)
-    password = Column(String(100))
-    create_date = Column(DateTime)
-    is_premium = Column(Boolean)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(1000))
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(100))
+    create_date = db.Column(db.DateTime)
+    is_premium = db.Column(db.Boolean)
 
     def __init__(self, name, email, password):
         self.name = name
@@ -29,3 +27,15 @@ class User(Base):
     def _check_password(self, password):
         return self.password == self._hash_password(password)
 
+class Moderator(db.Model):
+    __tablename__ = "moderators"
+
+    moderator_id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+
+class PremiumUser(db.Model):
+    __tablename__ = "premium_users"
+
+    premium_user_id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    # Categories checkboxes (Boolean)
