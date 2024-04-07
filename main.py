@@ -24,11 +24,12 @@ async def index():
 
 @app.route("/favicon.ico")
 async def favicon():
-    return await send_from_directory(
-        os.path.join(app.root_path, "static"),
-        "squid.ico",
-        mimetype="image/vnd.microsoft.icon",
-    )
+    with app.app_context():
+        return await send_from_directory(
+            os.path.join(app.root_path, "static"),
+            "squid.ico",
+            mimetype="image/vnd.microsoft.icon",
+        )
 
 
 @app.route("/time", methods=["GET", "POST"])
