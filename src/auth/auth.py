@@ -9,7 +9,7 @@ from quart_auth import (
     Unauthorized,
 )
 from secrets import compare_digest
-from dbs import *
+from utils import obtain_key
 
 auth = Blueprint("auth", __name__)
 
@@ -20,8 +20,8 @@ async def login():
     Check credentials (username && password)
     """
 
-    username = "user"
-    password = "password"
+    username = obtain_key(mode="db_username")
+    password = obtain_key(mode="db_passport")
 
     if request.method == "POST":
         data = await request.form
