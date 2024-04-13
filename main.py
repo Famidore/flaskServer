@@ -14,16 +14,10 @@ async def index():
     return await render_template("index.html")
 
 
-@main.route('/test_2')
+@main.route("/test_2")
 def check_db_connection():
-    """
-    A tu już kurwa jebana nie chce działać, jakie kurwa "The current Flask app is not registered with
-    this 'SQLAlchemy' instance. Did you forget to call 'init_app', or did you create multiple 'SQLAlchemy' instances?"
-    ja ci kurwa dam forget jebana twoja mać. Ja nic forgot rozumiesz to ty kurwa nie umiesz ogarnąć że to jest registered
-    bo jak ci kurwa registeruje to jeszcze raz szmato jebana to zgłaszasz że już masz i żebym urzywał tamtego śmieciu
-    jebany. Wszystkie znaki na niebie i ziemi mówią że powinno to gówno dziąłać kurwaaaaaaaaaaaaaaaaa.
-    """
     from run import db
+
     try:
 
         # Sprawdzenie połączenia z bazą danych

@@ -1,50 +1,35 @@
 import quart_flask_patch
 from quart import Quart
-from quart_auth import (
-    AuthUser,
-    current_user,
-    login_required,
-    login_user,
-    logout_user,
-    QuartAuth,
-)
+from quart_auth import QuartAuth
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
-
+from src.utils import obtain_key
 import asyncio
 
-
-# TO DO
-# Move the connection params to more secure place :D
-
-_PASSWORD = "Trendspire2137"
-_USER_ID = "ts_admin"
-_SERVER_NAME = "domino403.database.windows.net"
-_PORT = "1433"
-_DB_NAME = "SQLDataBaseTS"
-_ODBC_DRIVER = "ODBC+Driver+18+for+SQL+Server"
-
-
-
+_PASSWORD = obtain_key(mode="_PASSWORD")
+_USER_ID = obtain_key(mode="_USER_ID")
+_SERVER_NAME = obtain_key(mode="_SERVER_NAME")
+_PORT = obtain_key(mode="_PORT")
+_DB_NAME = obtain_key(mode="_DB_NAME")
+_ODBC_DRIVER = obtain_key(mode="_ODBC_DRIVER")
 
 
 def setup_app():
     app = Quart(__name__)
 
     app.config["SECRET_KEY"] = "gites-malines"
-    app.config["SQLALCHEMY_DATABASE_URI"] =\
+    app.config["SQLALCHEMY_DATABASE_URI"] = (
         f"mssql+pyodbc://{_USER_ID}:{_PASSWORD}@{_SERVER_NAME}:{_PORT}/{_DB_NAME}?driver={_ODBC_DRIVER}"
+    )
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     QuartAuth(app)
-
 
     from src.auth.auth import auth as auth_blueprint
     from main import main as main_blueprint
     from src.trends import trending as trending_blueprint
     from src.premium_pages.premium_sites import premium as premium_blueprint
     from src.user_profile.profile import user_profile as profile_blueprint
-
 
     app.register_blueprint(auth_blueprint)
     app.register_blueprint(main_blueprint)
@@ -59,7 +44,7 @@ application = setup_app()
 db = SQLAlchemy(application)
 
 
-@application.route('/test')
+@application.route("/test")
 def check_db_connection():
     """
     Tu działa kurwa to jebane DB
