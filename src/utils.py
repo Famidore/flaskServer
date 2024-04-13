@@ -2,7 +2,7 @@ import json
 from threading import Thread
 
 
-def obtain_key(file_path: str = "keys.json", mode: str = "youtube_key"):
+def obtain_key(file_path: str = "CONFIG.json", mode: str = "youtube_key"):
     try:
         with open(file_path, "r") as f:
             data = json.load(f)
