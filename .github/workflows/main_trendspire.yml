@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'TrendSpire'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C0B0E755BE7B40C3828ED2C426B65919 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8082B508FC4B41F49261027D2A17B016 }}
