@@ -5,8 +5,6 @@ reddit_url = "https://www.reddit.com/"
 
 
 def get_reddit_trends():
-    """TODO: make a selectable list of reddit trends"""
-
     pageContent = requests.get(reddit_url, timeout=300).text
     soup = BeautifulSoup(pageContent, "html5lib")
     news = soup.find_all(

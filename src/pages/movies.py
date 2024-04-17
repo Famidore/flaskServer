@@ -16,11 +16,11 @@ def get_movies_list():
     links_text = []
 
     for i, j, k in zip(titles, imgs, links):
-        if (i.text) not in titles_text:
+
+        # check for lazy load
+        if i.text not in titles_text:
             titles_text.append(i.text)
-        if j["src"] not in imgs_text:
             imgs_text.append(j["src"])
-        if k["href"] not in links_text:
             links_text.append("https://www.filmweb.pl" + str(k["href"]))
 
     return titles_text, imgs_text, links_text
