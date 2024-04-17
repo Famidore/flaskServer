@@ -1,5 +1,4 @@
 from flask_sqlalchemy import SQLAlchemy
-from ..movies import get_movies_list
 import hashlib
 from datetime import datetime
 
@@ -21,10 +20,12 @@ class Post(db.Model):
     content = db.Column(db.String)
     added_date = db.Column(db.DateTime)
 
-    def __init__(self, title, image, link):
+    def __init__(self, title, image, link, author=None, content=None):
         self.title = title
         self.image_id = image
         self.link_id = link
+        self.author_id = author
+        self.content = content
 
 class Counter(db.Model):
     __tablename__ = "counters"
@@ -43,6 +44,8 @@ class Author(db.Model):
     avatar = db.Column(db.String)
     name = db.Column(db.String)
 
+    def __init__(self, name):
+        self.name = name
 
 class Link(db.Model):
     __tablename__ = "links"
