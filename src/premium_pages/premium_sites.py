@@ -21,4 +21,4 @@ async def redirect_to_login(*_):
     """
     Powiadom że nie ma dostępu!
     """
-    return redirect(url_for("auth.login"))
+    return redirect(url_for("auth.unauthorized"))
