@@ -3,7 +3,7 @@
 {% block content %}
 <div>
     <h2><font color="white">Search for new Categories</font></h2>
-    <form autocomplete="off">
+    <form autocomplete="off" method="POST">
         <div style="width:300px;
             padding: 10px;
             cursor: pointer;
@@ -20,7 +20,7 @@
 
 <div>
     <h2><font color="white">Your Categories</font></h2>
-    <form autocomplete="off">
+    <form autocomplete="off" method="POST">
         <div style="width:300px;
             padding: 10px;
             cursor: pointer;
@@ -42,6 +42,7 @@
         allCategories.push(i.replaceAll('&#39;', '').replaceAll(']', '').replaceAll('[', '').trim())
     }
     let userCategories = [];
+    // remember to change to whole list after connecting to db!!!
     for (i of "{{userCategories[1:]}}".split(',')) {
         userCategories.push(i.replaceAll('&#39;', '').replaceAll(']', '').replaceAll('[', '').trim())
     }
