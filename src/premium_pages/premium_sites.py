@@ -7,7 +7,7 @@ from src.premium_pages.premium_scrapers.yt_premium import get_youtube_premium_ob
 from src.utils import obtain_key, threadReturn
 from src.premium_pages.premium_scrapers.get_categories import get_categories
 
-premium = Blueprint("premium", __name__, url_prefix="/trends")
+premium = Blueprint("premium", __name__, url_prefix="/premium")
 yt_api_key = obtain_key(mode="youtube_key")
 
 
@@ -15,13 +15,18 @@ yt_api_key = obtain_key(mode="youtube_key")
 @login_required
 async def premium_main():
     t_yt = threadReturn(target=get_youtube_premium_objects, args=(yt_api_key, [2, 10]))
+    t_movies = threadReturn(target=get_movies_premium)
 
     t_yt.start()
+    t_movies.start()
 
     yt_titles, yt_imgs, yt_urls = t_yt.join()
-    print(yt_titles, yt_imgs, yt_urls)
+    movies_list, movies_posters, movies_links = t_movies.join()
+
     return await render_template(
-        "premium/premium_hub.html", yt_data=zip(yt_titles, yt_imgs, yt_urls)
+        "premium/premium_hub.html",
+        yt_data=zip(yt_titles, yt_imgs, yt_urls),
+        movies_data=zip(movies_list, movies_posters, movies_links),
     )
 
 

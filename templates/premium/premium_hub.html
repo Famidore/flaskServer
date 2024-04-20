@@ -13,10 +13,13 @@
 </head>
 
 <body>
-    {% extends "base.html" %}
-
+    {% extends "index.html" %}
     {% block content %}
-    <h2 class="title">Youtube</h2>
+    <h2 class="title">Youtube
+        <a href="/premium/hub/configure">
+            <i class="fa fa-gear" style="font-size:36px; color:#f8a145"></i>
+        </a>
+    </h2>
     <div class="yt_section">
         {% for title, img, url in yt_data %}
         <a href={{url}} target="_blank" class="yt_item">
@@ -28,7 +31,7 @@
 
     <h2 class="title">Movies</h2>
     <div class="movies_section">
-        {% for movie, poster, link in movies_list %}
+        {% for movie, poster, link in movies_data %}
         <a href={{link}} target="_blank" class="movies_item">
             <img loading="lazy" src={{poster}} width=100 alt={{movie}}>
             <p>{{movie}}</p>
