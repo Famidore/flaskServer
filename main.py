@@ -16,7 +16,7 @@ async def index():
 async def favicon():
     return await send_from_directory(
         os.path.join(main.root_path, "static"),
-        "squid.ico",
+        "logo.ico",
         mimetype="image/vnd.microsoft.icon",
     )
 
