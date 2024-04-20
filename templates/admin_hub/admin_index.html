@@ -8,8 +8,14 @@
 <div>
     <form method="POST">
         {% for key, header in config_content %}
-        <p><font color="white"> {{header}} </font></p>
+        <p>
+            <font color="white"> {{header}} </font>
+        </p>
+        {% if header == "db_scraping_time" %}
+        <input type="time" name="{{header}}" min="00:00" max="24:00" value={{key}} required />
+        {% else %}
         <input name={{header}} value={{key}}>
+        {% endif %}
         {% endfor %}
         <input type="submit" value="Submit">
     </form>

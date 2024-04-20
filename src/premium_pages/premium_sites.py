@@ -14,10 +14,18 @@ yt_api_key = obtain_key(mode="youtube_key")
 @premium.route("/hub")
 @login_required
 async def premium_main():
-    return await render_template("premium/premium_hub.html")
+    t_yt = threadReturn(target=get_youtube_premium_objects, args=(yt_api_key, [2, 10]))
+
+    t_yt.start()
+
+    yt_titles, yt_imgs, yt_urls = t_yt.join()
+    print(yt_titles, yt_imgs, yt_urls)
+    return await render_template(
+        "premium/premium_hub.html", yt_data=zip(yt_titles, yt_imgs, yt_urls)
+    )
 
 
-@premium.route("/hub/configure", methods=["POST"])
+@premium.route("/hub/configure", methods=["POST", "GET"])
 @login_required
 async def premium_config():
     userCategories = obtain_key(
