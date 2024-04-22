@@ -4,6 +4,7 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
+
 class User(db.Model):
     __tablename__ = "users"
 
@@ -31,11 +32,11 @@ class Moderator(db.Model):
     __tablename__ = "moderators"
 
     moderator_id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
 class PremiumUser(db.Model):
     __tablename__ = "premium_users"
 
     premium_user_id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     # Categories checkboxes (Boolean)

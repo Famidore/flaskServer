@@ -1,8 +1,5 @@
-from flask_sqlalchemy import SQLAlchemy
-import hashlib
+from ...auth.auth_db.models import db
 from datetime import datetime
-
-db = SQLAlchemy()
 
 
 class Post(db.Model):
@@ -71,7 +68,7 @@ class Category(db.Model):
     category = db.Column(db.String)
 
 class ImageLink(db.Model):
-    __tablename__ = "inage_links"
+    __tablename__ = "image_links"
 
     id = db.Column(db.Integer, primary_key=True)
     image = db.Column(db.String)
