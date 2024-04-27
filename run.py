@@ -1,11 +1,18 @@
+import quart_flask_patch
 from quart import Quart
 from quart_auth import QuartAuth
+from src.pages.posts_db.models import db
 import asyncio
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from src.pages.posts_db.adding_posts import add_wykop_to_db, add_movies_to_db, add_youtube_to_db, add_reddit_to_db
+from src.utils import obtain_key
 
 
 def setup_app():
     app = Quart(__name__)
     app.config["SECRET_KEY"] = "gites-malines"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:gites-malines@localhost/database"
+    db.init_app(app)
     QuartAuth(app)
 
     from src.auth.auth import auth as auth_blueprint
@@ -24,6 +31,27 @@ def setup_app():
 
 
 application = setup_app()
+
+
+#-------database-------#
+scheduler = AsyncIOScheduler()
+
+async def add_posts_to_db():
+    await add_wykop_to_db()
+    await add_movies_to_db()
+    await add_reddit_to_db()
+    await add_youtube_to_db(obtain_key(file_path="CONFIG.json", mode="youtube_key"))
+
+
+@application.before_serving
+async def create_db_tables():
+    async with application.app_context():
+        db.create_all()
+    await add_posts_to_db()
+
+scheduler.add_job(add_posts_to_db, 'interval', hours=2)
+scheduler.start()
+#-------end database-------#
 
 if __name__ == "__main__":
     asyncio.run(application.run_task(debug=True, host="0.0.0.0", port=5050))
