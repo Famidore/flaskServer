@@ -1,63 +1,48 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
+{% block title %}Trends{% endblock %}
+{% block style_sheet %}rel=stylesheet type="text/css" href="{{ url_for('static',filename='styles/trends_page.css') }}"{%
+endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trends</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='squid.ico') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/trends_page.css') }}">
-    <style>
-    </style>
-</head>
+{% block content %}
+<h2 class="title">Youtube</h2>
+<div class="yt_section">
+    {% for title, img, url in yt_data %}
+    <a href={{url}} target="_blank" class="yt_item">
+        <img loading="lazy" src={{img}} width=100 alt={{title}}>
+        <p>{{title}}</p>
+    </a>
+    {% endfor %}
+</div>
 
-<body>
-    {% extends "base.html" %}
-    
-    {% block content %}
-    <h2 class="title">Youtube</h2>
-    <div class="yt_section">
-        {% for title, img, url in yt_data %}
-        <a href={{url}} target="_blank" class="yt_item">
-            <img loading="lazy" src={{img}} width=100 alt={{title}}>
-            <p>{{title}}</p>
-        </a>
-        {% endfor %}
-    </div>
+<h2 class="title">Movies</h2>
+<div class="movies_section">
+    {% for movie, poster, link in movies_list %}
+    <a href={{link}} target="_blank" class="movies_item">
+        <img loading="lazy" src={{poster}} width=100 alt={{movie}}>
+        <p>{{movie}}</p>
+    </a>
+    {% endfor %}
+</div>
 
-    <h2 class="title">Movies</h2>
-    <div class="movies_section">
-        {% for movie, poster, link in movies_list %}
-        <a href={{link}} target="_blank" class="movies_item">
-            <img loading="lazy" src={{poster}} width=100 alt={{movie}}>
-            <p>{{movie}}</p>
-        </a>
-        {% endfor %}
-    </div>
+<h2 class="title">Wykop</h2>
+<div class="wykop_section">
+    {% for title, img_src, link in wykop_titles %}
+    <a href={{link}} target="_blank" class="wykop_item">
+        <img loading="lazy" src={{img_src}} alt={{title}}>
+        <p>{{title}}</p>
+    </a>
+    {% endfor %}
+</div>
 
-    <h2 class="title">Wykop</h2>
-    <div class="wykop_section">
-        {% for title, img_src, link in wykop_titles %}
-        <a href={{link}} target="_blank" class="wykop_item">
-            <img loading="lazy" src={{img_src}} alt={{title}}>
-            <p>{{title}}</p>
-        </a>
-        {% endfor %}
-    </div>
-
-    <h2 class="title">Reddit</h2>
-    <div class="reddit_section">
-        {% for title, sub, url, img, descs in reddit_trends %}
-        <a href={{url}} target="_blank" class="reddit_item">
-            <p>{{title}}</p>
-            <img loading="lazy" src={{img}} alt={{title}}>
-            <p>{{descs}}</p>
-            <p>{{sub}}</p>
-        </a>
-        {% endfor %}
-    </div>
-    {% endblock %}
-</body>
-
-</html>
+<h2 class="title">Reddit</h2>
+<div class="reddit_section">
+    {% for title, sub, url, img, descs in reddit_trends %}
+    <a href={{url}} target="_blank" class="reddit_item">
+        <p>{{title}}</p>
+        <img loading="lazy" src={{img}} alt={{title}}>
+        <p>{{descs}}</p>
+        <p>{{sub}}</p>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}
