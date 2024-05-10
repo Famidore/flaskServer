@@ -1,9 +1,16 @@
-from .models import db, Post, Link, ImageLink, Author
+from .models import db, Post, Link, ImageLink, Author, Platform
 from ..youtube import get_youtube_trending_videos
 from ..movies import get_movies_list
 from ..reddit import get_reddit_trends
 from ..wykop import get_wykop_trends
 
+
+def initialize_platforms():
+    platforms = ['youtube', 'wykop', 'reddit', 'filmweb']
+    for platform in platforms:
+        new_platform = Platform(platform)
+        db.session.add(new_platform)
+    db.session.commit()
 
 def add_links_to_db(links):
     for link in links:
@@ -44,8 +51,12 @@ async def add_movies_to_db():
     for title, img, link in zip(titles, imgs, links):
         image = ImageLink.query.filter_by(image=img).first()
         link = Link.query.filter_by(link=link).first()
+        platform = Platform.query.filter_by(name='filmweb').first()
         if image and link:
-            new_movie = Post(title, image.id, link.id)
+            new_movie = Post(title=title,
+                             image=image.id,
+                             link=link.id,
+                             platform=platform.id)
             db.session.add(new_movie)
     db.session.commit()
 
@@ -57,8 +68,14 @@ async def add_reddit_to_db():
         src = Author.query.filter_by(name=source).first()
         image = ImageLink.query.filter_by(image=img).first()
         link = Link.query.filter_by(link=link).first()
+        platform = Platform.query.filter_by(name='reddit').first()
         if src and image and link:
-            new_reddit_post = Post(news, image.id, link.id, src.id, desc)
+            new_reddit_post = Post(title=news,
+                                   image=image.id,
+                                   link=link.id,
+                                   author=src.id,
+                                   content=desc,
+                                   platform=platform.id)
             db.session.add(new_reddit_post)
     db.session.commit()
 
@@ -72,8 +89,12 @@ async def add_wykop_to_db():
     for title, img, link in zip(titles, imgs, links):
         image = ImageLink.query.filter_by(image=img).first()
         link = Link.query.filter_by(link=link).first()
-        if image and link:
-            new_wykop_post = Post(title, image.id, link.id)
+        platform = Platform.query.filter_by(name='wykop').first()
+        if image is not None and link is not None:
+            new_wykop_post = Post(title=title,
+                                  image=image.id,
+                                  link=link.id,
+                                  platform=platform.id)
             db.session.add(new_wykop_post)
     db.session.commit()
 
@@ -86,7 +107,15 @@ async def add_youtube_to_db(api_key, region_code="PL", max_results=10):
     for title, img, link in zip(titles, imgs, urls):
         image = ImageLink.query.filter_by(image=img).first()
         link = Link.query.filter_by(link=link).first()
+        platform = Platform.query.filter_by(name='youtube').first()
         if image and link:
-            new_youtube_post = Post(title, image.id, link.id)
+            new_youtube_post = Post(title=title,
+                                    image=image.id,
+                                    link=link.id,
+                                    platform=platform.id)
             db.session.add(new_youtube_post)
     db.session.commit()
+
+def get_posts(platform, amount):
+    posts = Post.query.order_by(Post.added_date.desc()).limit(amount).all()
+    return posts
