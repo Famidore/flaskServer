@@ -1,0 +1,15 @@
+.login-form{
+    position: relative;
+    width: 100%;
+    justify-content: center;
+}
+
+.input-field{
+    background-color: #3e4444;
+    width: 50%;
+    height: 40px;
+    border-radius: 20px;
+    color: #f8a145;
+    font-size: 20px;
+    text-align: center;
+}
