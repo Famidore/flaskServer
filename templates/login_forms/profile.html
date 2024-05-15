@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<h1 class="title">
+    Welcome, you are logged in as: "{{user}}"!
+</h1>
+<form action="/logout">
+    <input type="submit" value="Logout" />
+</form>
+
+{% endblock %}

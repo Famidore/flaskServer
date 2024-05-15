@@ -1,100 +1,48 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
+{% block title %}Trends{% endblock %}
+{% block style_sheet %}rel=stylesheet type="text/css" href="{{ url_for('static',filename='styles/trends_page.css') }}"{%
+endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FamServ | Trends</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='squid.ico') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/trends_page.css') }}">
-    <style>
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #333333;
-        }
+{% block content %}
+<h2 class="title">Youtube</h2>
+<div class="yt_section">
+    {% for title, img, url in yt_data %}
+    <a href={{url}} target="_blank" class="yt_item">
+        <img loading="lazy" src={{img}} width=100 alt={{title}}>
+        <p>{{title}}</p>
+    </a>
+    {% endfor %}
+</div>
 
-        li {
-            float: left;
-        }
+<h2 class="title">Movies</h2>
+<div class="movies_section">
+    {% for movie, poster, link in movies_list %}
+    <a href={{link}} target="_blank" class="movies_item">
+        <img loading="lazy" src={{poster}} width=100 alt={{movie}}>
+        <p>{{movie}}</p>
+    </a>
+    {% endfor %}
+</div>
 
-        li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 16px;
-            text-decoration: none;
-        }
+<h2 class="title">Wykop</h2>
+<div class="wykop_section">
+    {% for title, img_src, link in wykop_titles %}
+    <a href={{link}} target="_blank" class="wykop_item">
+        <img loading="lazy" src={{img_src}} alt={{title}}>
+        <p>{{title}}</p>
+    </a>
+    {% endfor %}
+</div>
 
-        li a:hover {
-            background-color: #111111;
-        }
-
-        h1 {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            text-decoration: none;
-        }
-    </style>
-</head>
-
-<body>
-    <h1><a href="/" style="text-decoration: none; color: inherit;">Trends</a></h1>
-    <ul>
-        <li> <a href='/'>Home</a></li>
-        <li> <a href='/time'>Time</a></li>
-        <li> <a href='/trends'>Trends</a></li>
-        <!-- <li> <a href='/pull'>Update Server</a></li> -->
-        <li> <a href='/reddit-inspect'>Reddit</a></li>
-        <li> <a href='/wykop-inspect'>Wykop</a></li>
-    </ul>
-
-    <h2>Youtube</h2>
-    <div class="yt_section">
-        {% for title, img, url in yt_data %}
-        <a href={{url}} target="_blank" class="yt_item">
-            <img loading="lazy" src={{img}} width=100 alt={{title}}>
-            <p>{{title}}</p>
-        </a>
-        {% endfor %}
-    </div>
-
-    <h2>Movies</h2>
-    <div class="movies_section">
-        {% for movie, poster, link in movies_list %}
-        <a href={{link}} target="_blank" class="movies_item">
-            <img loading="lazy" src={{poster}} width=100 alt={{movie}}>
-            <p>{{movie}}</p>
-        </a>
-        {% endfor %}
-    </div>
-
-    <h2>Wykop</h2>
-    <div class="wykop_section">
-        {% for title, img_src, link in wykop_titles %}
-        <a href={{link}} target="_blank" class="wykop_item">
-            <img loading="lazy" src={{img_src}} alt={{title}}>
-            <p>{{title}}</p>
-        </a>
-        {% endfor %}
-    </div>
-
-    <h2>Reddit</h2>
-    <div class="reddit_section">
-        {% for title, sub, url, img, descs in reddit_trends %}
-        <a href={{url}} target="_blank" class="reddit_item">
-            <p>{{title}}</p>
-            <img loading="lazy" src={{img}} alt={{title}}>
-            <p>{{descs}}</p>
-            <p>{{sub}}</p>
-        </a>
-        {% endfor %}
-    </div>
-</body>
-
-</html>
+<h2 class="title">Reddit</h2>
+<div class="reddit_section">
+    {% for title, sub, url, img, descs in reddit_trends %}
+    <a href={{url}} target="_blank" class="reddit_item">
+        <p>{{title}}</p>
+        <img loading="lazy" src={{img}} alt={{title}}>
+        <p>{{descs}}</p>
+        <p>{{sub}}</p>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

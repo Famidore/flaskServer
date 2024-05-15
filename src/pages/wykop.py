@@ -22,19 +22,18 @@ def get_wykop_trends():
     for i, j in zip(titles, imgs):
         titleSoup = BeautifulSoup(i.text, "html5lib")
         title = titleSoup.find(class_="")
+
         if (title.text.strip()) not in titles_text:
             titles_text.append(title.text.strip())
 
-        linksSoup = BeautifulSoup(str(i), "html5lib")
-        link = linksSoup.find("a")
-        if ("https://wykop.pl" + str(link["href"])) not in links_text:
+            linksSoup = BeautifulSoup(str(i), "html5lib")
+            link = linksSoup.find("a")
             links_text.append("https://wykop.pl" + str(link["href"]))
 
-        # fix issues about missing images
+            # fix issues about missing images (twitter)
 
-        imgSoup = BeautifulSoup(str(j), "html5lib")
-        img = imgSoup.find("img")
-        if str(img["src"]) not in imgs_text:
+            imgSoup = BeautifulSoup(str(j), "html5lib")
+            img = imgSoup.find("img")
             imgs_text.append(str(img["src"]))
 
     return titles_text, imgs_text, links_text
