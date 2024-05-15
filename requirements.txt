@@ -59,3 +59,7 @@ urllib3==2.1.0
 webencodings==0.5.1
 Werkzeug==3.0.1
 wsproto==1.2.0
+fastapi
+uvicorn
+uvloop
+httptools
