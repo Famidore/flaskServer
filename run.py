@@ -5,14 +5,22 @@ from werkzeug.local import LocalProxy
 from src.pages.posts_db.models import db
 import asyncio
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from src.pages.posts_db.adding_posts import add_wykop_to_db, add_movies_to_db, add_youtube_to_db, add_reddit_to_db, initialize_platforms
+from src.pages.posts_db.adding_posts import (
+    add_wykop_to_db,
+    add_movies_to_db,
+    add_youtube_to_db,
+    add_reddit_to_db,
+    initialize_platforms,
+)
 from src.utils import obtain_key
 
 
 def setup_app():
     app = Quart(__name__)
-    app.config["SECRET_KEY"] = obtain_key(mode="app_secret")"
-    app.config["SQLALCHEMY_DATABASE_URI"] = obtain_key(file_path="CONFIG.json", mode="database_url")
+    app.config["SECRET_KEY"] = obtain_key(mode="app_secret")
+    app.config["SQLALCHEMY_DATABASE_URI"] = obtain_key(
+        file_path="CONFIG.json", mode="database_url"
+    )
     db.init_app(app)
     QuartAuth(app)
 
@@ -37,8 +45,9 @@ application = setup_app()
 
 auth_manager = QuartAuth(application)
 
-#-------database-------#
+# -------database-------#
 scheduler = AsyncIOScheduler()
+
 
 async def add_posts_to_db():
     await add_wykop_to_db()
@@ -55,9 +64,9 @@ async def create_db_tables():
     await add_posts_to_db()
 
 
-scheduler.add_job(add_posts_to_db, 'interval', hours=2)
+scheduler.add_job(add_posts_to_db, "interval", hours=2)
 scheduler.start()
-#-------end database-------#
+# -------end database-------#
 
 if __name__ == "__main__":
     asyncio.run(application.run_task(debug=True, host="0.0.0.0", port=5050))
