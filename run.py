@@ -11,7 +11,7 @@ from src.utils import obtain_key
 def setup_app():
     app = Quart(__name__)
     app.config["SECRET_KEY"] = "gites-malines"
-    app.config["SQLALCHEMY_DATABASE_URI"] = 'UZUPEŁNIĆ SOBIE'
+    app.config["SQLALCHEMY_DATABASE_URI"] = obtain_key(file_path="CONFIG.json", mode="database_url")
     db.init_app(app)
     QuartAuth(app)
 
