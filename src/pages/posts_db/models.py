@@ -17,12 +17,14 @@ class Post(db.Model):
     content = db.Column(db.String)
     added_date = db.Column(db.DateTime)
 
-    def __init__(self, title, image, link, author=None, content=None):
+    def __init__(self, title, image, link, author=None, content=None, platform=None):
         self.title = title
         self.image_id = image
         self.link_id = link
         self.author_id = author
         self.content = content
+        self.platform_id = platform
+        self.added_date = datetime.now()
 
 class Counter(db.Model):
     __tablename__ = "counters"
@@ -59,6 +61,9 @@ class Platform(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
+
+    def __init__(self, name):
+        self.name = name
 
 
 class Category(db.Model):

@@ -2,10 +2,6 @@ from models import db, User
 
 
 def register_user(name, email, password):
-    #engine = create_engine('sqlite:///../../../dbs/database.db')
-    #Base.metadata.create_all(engine)
-    #Session = sessionmaker(bind=engine)
-    #session = Session()
 
     # Check if email already exists declared in database
     existing_email = User.query.filter_by(email=email).first()
