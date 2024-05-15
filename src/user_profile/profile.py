@@ -19,4 +19,4 @@ async def redirect_to_login(*_):
     """
     zrobić podstronę informującą o braku dostępu i z możliwością przekierowania do loginu/rejestracji
     """
-    return redirect(url_for("auth.login"))
+    return redirect(url_for("auth.unauthorized"))

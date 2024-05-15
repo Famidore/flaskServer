@@ -1,6 +1,7 @@
 import quart_flask_patch
 from quart import Quart
 from quart_auth import QuartAuth
+from werkzeug.local import LocalProxy
 from src.pages.posts_db.models import db
 import asyncio
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -10,7 +11,7 @@ from src.utils import obtain_key
 
 def setup_app():
     app = Quart(__name__)
-    app.config["SECRET_KEY"] = "gites-malines"
+    app.config["SECRET_KEY"] = obtain_key(mode="app_secret")"
     app.config["SQLALCHEMY_DATABASE_URI"] = obtain_key(file_path="CONFIG.json", mode="database_url")
     db.init_app(app)
     QuartAuth(app)
@@ -20,18 +21,21 @@ def setup_app():
     from src.trends import trending as trending_blueprint
     from src.premium_pages.premium_sites import premium as premium_blueprint
     from src.user_profile.profile import user_profile as profile_blueprint
+    from src.admin_hub.admin_index import admin_hub as admin_blueprint
 
     app.register_blueprint(auth_blueprint)
     app.register_blueprint(main_blueprint)
     app.register_blueprint(trending_blueprint)
     app.register_blueprint(premium_blueprint)
     app.register_blueprint(profile_blueprint)
+    app.register_blueprint(admin_blueprint)
 
     return app
 
 
 application = setup_app()
 
+auth_manager = QuartAuth(application)
 
 #-------database-------#
 scheduler = AsyncIOScheduler()

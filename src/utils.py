@@ -2,16 +2,45 @@ import json
 from threading import Thread
 
 
-def obtain_key(file_path: str = "CONFIG.json", mode: str = "youtube_key"):
+def obtain_key(
+    file_path: str = "CONFIG.json",
+    mode: str = "youtube_key",
+    reneder_whole: bool = False,
+):
     try:
         with open(file_path, "r") as f:
             data = json.load(f)
-            return str(data[mode])
+            if not reneder_whole:
+                return str(data[mode])
+            else:
+                return [list(data.keys()), list(data.values())]
     except FileNotFoundError:
-        print("\nEnter your api key in the 'keys.json' file")
+        print("\nEnter your api key in the 'CONFIG.json' file!")
     except Exception as e:
-        print(f"An error occurred when reading api key: {e}")
+        print(f"An error occurred when reading api key: {e}!")
     return
+
+
+def update_config(file_path: str = "CONFIG.json", data: list = None):
+    if data:
+        try:
+            with open(file_path, "r") as reading:
+                content = json.load(reading)
+                keys = list(content.keys())
+            reading.close()
+            with open(file_path, "w") as writing:
+                new_content = {}
+                for key, value in zip(keys, data):
+                    new_content[key] = value
+                json.dump(new_content, writing)
+                return
+        except FileNotFoundError:
+            print("\nThe CONFIG.json file is missing!")
+        except Exception as e:
+            print(f"An error occurred when reading api key: {e}!")
+        return
+    else:
+        print("New data cannot be empty!")
 
 
 class threadReturn(Thread):
@@ -31,4 +60,5 @@ class threadReturn(Thread):
 
 
 if __name__ == "__main__":
-    print(obtain_key("keys2.json", "twitter_api"))
+    # print(obtain_key(reneder_whole=True))
+    update_config(data=["test", "groszek", "tesss"])
