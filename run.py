@@ -11,7 +11,7 @@ from src.utils import obtain_key
 def setup_app():
     app = Quart(__name__)
     app.config["SECRET_KEY"] = "gites-malines"
-    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://uyhj0e7avmcsdya36mro:qTMl91PaGsoLoJmmb18OimQqDwHNJe@bzn6xv6nopegcws0mcyo-postgresql.services.clever-cloud.com:50013/bzn6xv6nopegcws0mcyo"
+    app.config["SQLALCHEMY_DATABASE_URI"] = 'UZUPEŁNIĆ SOBIE'
     db.init_app(app)
     QuartAuth(app)
 

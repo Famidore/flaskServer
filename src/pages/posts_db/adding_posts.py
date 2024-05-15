@@ -115,7 +115,3 @@ async def add_youtube_to_db(api_key, region_code="PL", max_results=10):
                                     platform=platform.id)
             db.session.add(new_youtube_post)
     db.session.commit()
-
-def get_posts(platform, amount):
-    posts = Post.query.order_by(Post.added_date.desc()).limit(amount).all()
-    return posts
