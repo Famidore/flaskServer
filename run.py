@@ -13,9 +13,27 @@ from src.pages.posts_db.adding_posts import (
     initialize_platforms,
 )
 from src.utils import obtain_key
-
+import os
+import json
 
 def setup_app():
+    try:
+        config = {
+            "youtube_key": os.environ.get('youtube_key'),
+	        "db_username": os.environ.get('db_username'),
+	        "db_password": os.environ.get('db_password'),
+	        "admin_username": os.environ.get('admin_username'),
+        	"admin_password": os.environ.get('admin_password'),
+        	"role": os.environ.get('role'),
+        	"app_secret": os.environ.get('app_secret'),
+        	"db_scraping_time": os.environ.get('db_scraping_time'),
+        	"database_url": os.environ.get('database_url'),
+        }
+        with open("CONFIG.json", "w") as config_file:
+            json.dump(config, config_file)
+    except Exception as e:
+        print(e)
+    
     app = Quart(__name__)
     app.config["SECRET_KEY"] = obtain_key(mode="app_secret")
     app.config["SQLALCHEMY_DATABASE_URI"] = obtain_key(

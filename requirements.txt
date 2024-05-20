@@ -1,4 +1,5 @@
 Flask-SQLAlchemy==3.1.1
+quart-flask-patch==0.3.0
 SQLAlchemy==2.0.28
 SQLAlchemy-Utils==0.41.1
 APScheduler~=3.10.4
@@ -58,7 +59,4 @@ urllib3==2.1.0
 webencodings==0.5.1
 Werkzeug==3.0.1
 wsproto==1.2.0
-fastapi
-uvicorn
-uvloop
-httptools
+hypercorn
