@@ -27,7 +27,7 @@ async def trends():
     movies_list, movies_posters, movies_links = t_movies.join()
     yt_titles, yt_imgs, yt_urls = t_yt.join()
     rd_titles, rd_src, rd_link, rd_img, rd_descs = t_rd.join()
-    wykop_titles, wykop_imgs, wykop_links = t_wykop.join()'''
+    '''
     movies_list, movies_posters, movies_links = get_posts('filmweb', 10)
     yt_titles, yt_imgs, yt_urls = get_posts('youtube', 10)
     rd_titles, rd_src, rd_link, rd_img, rd_descs = get_posts('reddit', 10)
