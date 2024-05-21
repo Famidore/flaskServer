@@ -1,15 +1,51 @@
-.login-form{
-    position: relative;
+#container{
+    font-size: 100px;
     width: 100%;
-    justify-content: center;
+    height: 100%;
+}
+
+.login-form{
+    height: 60%;
+}
+
+.login-label{
+    color: #f8a145;
+    font-size: 70%;
+    height: 40%;
+    text-align: center;
+    padding-top: 20px;
 }
 
 .input-field{
     background-color: #3e4444;
-    width: 50%;
-    height: 40px;
-    border-radius: 20px;
+    width: 30%;
+    height: 50px;
+    border-radius: 30px;
     color: #f8a145;
-    font-size: 20px;
+    font-size: 20%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
     text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.input-button{
+    width: 20%;
+    height: 50px;
+    border-radius: 30px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #000000;
+    color: white;
+    font-size: 20%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.input-button:hover{
+    background-color: #f8a145;
+    color: black;
 }

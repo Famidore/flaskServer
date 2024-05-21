@@ -4,12 +4,14 @@
     href="{{ url_for('static', filename='styles/login_page.css') }}"> {% endblock %}
 
 {% block content %}
-    <div class="login-form">
-        <form method="POST">
-            <input class="input-field" name="email"><br><br>
-            <input class="input-field" name="password" type="password"><br><br>
-            <input type="submit" value="Login">
-        </form>
+    <div id="container">
+        <div class="login-label">Log in</div>
+        <div class="login-form">
+            <form method="POST">
+                <input class="input-field" name="email">
+                <input class="input-field" name="password" type="password">
+                <input class="input-button" type="submit" value="Login">
+            </form>
+        </div>
     </div>
-
 {% endblock %}
