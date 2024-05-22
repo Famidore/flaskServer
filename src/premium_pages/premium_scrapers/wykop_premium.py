@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 
 def get_wykop_premium():
-    pass
+    return None
 
 
 if __name__ == "__main__":

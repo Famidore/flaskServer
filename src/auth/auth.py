@@ -20,14 +20,18 @@ async def login():
 
     username = obtain_key(mode="db_username")
     password = obtain_key(mode="db_password")
+    role = obtain_key(mode="role")
 
     if request.method == "POST":
         data = await request.form
         if data["email"] == username and compare_digest(data["password"], password):
-            login_user(AuthUser(username))  # user ID from dbs
+            if role == "admin":
+                login_user(AuthUser("ADMIN"))  # user ID from dbs
+            else:
+                login_user(AuthUser("USER"))
             return redirect(url_for("profile.profile"))
         else:
-            return "lol"
+            return "źle"
 
     return await render_template("login_forms/login.html")
 
@@ -42,3 +46,8 @@ async def signup():
 async def logout():
     logout_user()
     return redirect(url_for("auth.login"))
+
+
+@auth.route("/unauthorized")
+async def unauthorized():
+    return await render_template("login_forms/unauthorized.html")
