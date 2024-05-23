@@ -34,8 +34,7 @@
 
 .input-button{
     width: 20%;
-    height: 50px;
-    border-radius: 30px;
+    border-radius: 15% / 85%;
     display: block;
     margin-right: auto;
     margin-left: auto;
@@ -44,6 +43,8 @@
     font-size: 20%;
     margin-top: 5%;
     margin-bottom: 5%;
+    padding-bottom: 0.5%;
+    padding-top: 0.5%;
 }
 
 .input-button:hover{

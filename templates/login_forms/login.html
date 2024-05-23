@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
 {% block style_sheet %} rel="stylesheet" type="text/css"
-    href="{{ url_for('static', filename='styles/login_page.css') }}"> {% endblock %}
+    href="{{ url_for('static', filename='styles/login_page.css') }}" {% endblock %}
 
 {% block content %}
     <div id="container">
         <div class="login-label">Log in</div>
         <div class="login-form">
             <form method="POST">
-                <input class="input-field" name="email">
-                <input class="input-field" name="password" type="password">
+                <input class="input-field" name="email" placeholder="Email">
+                <input class="input-field" name="password" type="password" placeholder="Password">
                 <input class="input-button" type="submit" value="Login">
             </form>
         </div>
