@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Sign Up{% endblock %}
+{% block style_sheet %} rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='styles/signup_page.css') }}" {% endblock %}
 
 {% block content %}
 <div class="column is-4 is-offset-4">
-    <h3 class="title">Sign Up</h3>
+    <div class="title-space">
+        <h3 class="title">Sign Up</h3>
+    </div>
     <div class="box">
         <form method="POST" action="/signup">
             <div class="field">
@@ -14,7 +18,7 @@
 
             <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="name" placeholder="Name" autofocus="">
+                    <input class="input" type="text" name="name" placeholder="Name" autofocus="">
                 </div>
             </div>
 
@@ -24,7 +28,8 @@
                 </div>
             </div>
 
-            <button class="button is-block is-info is-large is-fullwidth">Sign Up</button>
+             <button class="submit-button">Submit</button>
+            <!-- <button class="button is-block is-info is-large is-fullwidth">Submit</button> -->
         </form>
     </div>
 </div>
