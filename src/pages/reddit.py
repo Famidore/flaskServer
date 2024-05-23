@@ -10,7 +10,7 @@ def get_reddit_trends():
     news = soup.find_all(
         class_="truncate font-bold text-primary-onBackground text-24 m-0"
     )
-    source = soup.find_all(class_="font-bold mr-2xs ml-xs")
+    source = soup.find_all(class_="font-bold mr-2xs ml-xs truncate")
     src_links = soup.find_all("a", class_="block hover:no-underline relative w-[280px]")
     imgs = soup.find_all(
         "img", class_="absolute h-100 w-100 pointer-events-none object-cover m-0"

@@ -64,6 +64,10 @@ async def add_movies_to_db():
 async def add_reddit_to_db():
     news_, sources, source_links, img_links, descriptions = get_reddit_trends()
 
+    add_authors_to_db(sources)
+    add_imgs_to_db(img_links)
+    add_links_to_db(source_links)
+
     for news, source, link, img, desc in zip(news_, sources, source_links, img_links, descriptions):
         src = Author.query.filter_by(name=source).first()
         image = ImageLink.query.filter_by(image=img).first()

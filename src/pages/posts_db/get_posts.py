@@ -13,13 +13,13 @@ def get_posts(platform_name, amount):
         for post in posts:
             titles.append(post.title)
             image = ImageLink.query.filter_by(id=post.image_id).first()
-            images.append(image.name)
+            images.append(image.image)
             link = Link.query.filter_by(id=post.link_id).first()
             links.append(link.link)
             author = Author.query.filter_by(id=post.author_id).first()
             authors.append(author.name)
             contents.append(post.content)
-        return titles, images, links, authors, contents
+        return titles, authors, links, images, contents
     else:
         for post in posts:
             titles.append(post.title)
