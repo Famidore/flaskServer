@@ -1,0 +1,32 @@
+.titles{
+    width: 100%;
+    text-align: center;
+    font-size: 100px;
+}
+.title{
+    font-size: 50%;
+}
+
+.buttons{
+    width: 100%;
+    text-align: center;
+    font-size: 100px;
+}
+.unauth-options{
+    width: 20%;
+    border-radius: 15% / 85%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #000000;
+    color: white;
+    font-size: 20%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding-bottom: 0.5%;
+    padding-top: 0.5%;
+}
+.unauth-options:hover{
+    background-color: #f8a145;
+    color: black;
+}

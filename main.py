@@ -14,7 +14,7 @@ async def index():
 
 @main.route("/favicon.ico")
 async def favicon():
-    return await send_from_directory(
+    return send_from_directory(
         os.path.join(main.root_path, "static"),
         "logo.ico",
         mimetype="image/vnd.microsoft.icon",

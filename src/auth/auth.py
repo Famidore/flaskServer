@@ -8,6 +8,7 @@ from quart_auth import (
 )
 from secrets import compare_digest
 from src.utils import obtain_key
+from src.auth.auth_db.auth_db import register_user
 
 auth = Blueprint("auth", __name__)
 
@@ -29,17 +30,32 @@ async def login():
                 login_user(AuthUser("ADMIN"))  # user ID from dbs
             else:
                 login_user(AuthUser("USER"))
-            return redirect(url_for("profile.profile"))
+            return redirect(url_for("profile"))
         else:
-            return "źle"
+            return await render_template("login_forms/signup.html",
+                                         message="Invalid username or password")
 
-    return await render_template("login_forms/login.html")
+    return await render_template("login_forms/profile.html")
 
 
 @auth.route("/signup")
 async def signup():
-    return current_user.auth_id or "you are not logged in"
-    # return await render_template("login_forms/signup.html")
+    # return current_user.auth_id or "you are not logged in"
+    return await render_template("login_forms/signup.html")
+
+
+@auth.route("/register", methods={"POST"})
+async def register():
+    data=await request.form
+    name=data["name"]
+    email=data["email"]
+    password=data["password"]
+    register_message:str
+    if name is not None and email is not None and password is not None:
+        register_message=register_user(name, email, password)
+    else:
+        register_message="Error: Arguments did not received!"
+    return await render_template("login_forms/signup_response.html", message=register_message)
 
 
 @auth.route("/logout")

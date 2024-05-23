@@ -7,28 +7,41 @@
 <div class="column is-4 is-offset-4">
     <div class="title-space">
         <h3 class="title">Sign Up</h3>
+        <h4 class="validation"> {{ message }} </h4>
     </div>
     <div class="box">
-        <form method="POST" action="/signup">
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
-                </div>
-            </div>
+        <form method="POST" action="/register">
+            <label class="input-label">
+                <input class="input" type="email" name="email" id="email" placeholder="Email" autofocus="">
+            </label>
+            <label class="input-label">
+                <input class="input" type="text" name="name" id="name" placeholder="Name" autofocus="">
+            </label>
+            <label class="input-label">
+                <input class="input" type="password" name="password" id="password" placeholder="Password">
+            </label>
+{#            <input class="submit-button" type="submit" value="Sign up">#}
+            <button class="submit-button">Sign up</button>
 
-            <div class="field">
-                <div class="control">
-                    <input class="input" type="text" name="name" placeholder="Name" autofocus="">
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="password" name="password" placeholder="Password">
-                </div>
-            </div>
-
-             <button class="submit-button">Submit</button>
+{#            <div class="field">#}
+{#                <div class="control">#}
+{#                    <input class="input" type="email" name="email" placeholder="Email" autofocus="">#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="field">#}
+{#                <div class="control">#}
+{#                    <input class="input" type="text" name="name" placeholder="Name" autofocus="">#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="field">#}
+{#                <div class="control">#}
+{#                    <input class="input" type="password" name="password" placeholder="Password">#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <input class="submit-button" type="submit" value="Sign up">#}
             <!-- <button class="button is-block is-info is-large is-fullwidth">Submit</button> -->
         </form>
     </div>
