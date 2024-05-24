@@ -38,8 +38,7 @@ async def login():
 
 @auth.route("/signup")
 async def signup():
-    return current_user.auth_id or "you are not logged in"
-    # return await render_template("login_forms/signup.html")
+    return await render_template("login_forms/signup.html")
 
 
 @auth.route("/logout")

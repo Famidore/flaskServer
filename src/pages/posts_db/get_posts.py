@@ -1,13 +1,20 @@
 from .models import Post, Link, ImageLink, Author, Platform
+from src.utils import translate_media_name
 
 
-def get_posts(platform_name, amount):
+def get_posts(platform_name, amount=10):
+    # platform_name = translate_media_name(platform_name)
     titles = []
     images = []
     links = []
     platform = Platform.query.filter_by(name=platform_name).first()
-    posts = Post.query.filter_by(platform_id=platform.id).order_by(Post.added_date.desc()).limit(amount).all()
-    if platform_name == 'reddit':
+    posts = (
+        Post.query.filter_by(platform_id=platform.id)
+        .order_by(Post.added_date.desc())
+        .limit(amount)
+        .all()
+    )
+    if platform_name == "reddit":
         authors = []
         contents = []
         for post in posts:

@@ -59,6 +59,25 @@ class threadReturn(Thread):
         return self._return
 
 
+def translate_media_name(input):
+    """
+    1 -> filmweb
+    2 -> reddit
+    3 -> wykop
+    4 -> youutube
+    """
+    if input == 1:
+        return "filmweb"
+    elif input == 2:
+        return "reddit"
+    elif input == 3:
+        return "wykop"
+    elif input == 4:
+        return "youtube"
+    else:
+        raise TypeError("Error during translation of media name")
+
+
 if __name__ == "__main__":
     # print(obtain_key(reneder_whole=True))
     update_config(data=["test", "groszek", "tesss"])
