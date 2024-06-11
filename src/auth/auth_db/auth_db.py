@@ -1,4 +1,4 @@
-from models import db, User
+from src.auth.auth_db.models import db, User
 
 
 def register_user(name, email, password):
@@ -18,8 +18,8 @@ def register_user(name, email, password):
 
 
 def login_user(name, password):
-    #Session = sessionmaker(bind=engine)
-    #session = Session()
+    # Session = sessionmaker(bind=engine)
+    # session = Session()
 
     # Check if user exists
     user = User.query.filter_by(name=name).first()
@@ -36,3 +36,16 @@ def login_user(name, password):
         return False
 
 
+def check_user_credencials(name):
+    user = User.query.filter_by(name=name).first()
+    if user._check_premium():
+        return True
+    else:
+        return False
+
+
+def user_upgrade(name):
+    user = User.query.filter_by(name=name).first()
+    if user:
+        user._upgrade()
+        print("User upgraded successfully")

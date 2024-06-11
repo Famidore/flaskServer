@@ -8,37 +8,44 @@ from quart_auth import (
 )
 from secrets import compare_digest
 from src.utils import obtain_key
+from src.auth.auth_db.auth_db import register_user, check_user_credencials
+from src.auth.auth_db.auth_db import login_user as login_database
+from src.auth.newsletter.newsletter import send_newsletter
+
 
 auth = Blueprint("auth", __name__)
 
 
 @auth.route("/login", methods={"GET", "POST"})
 async def login():
-    """
-    Check credentials (username && password)
-    """
-
-    username = obtain_key(mode="db_username")
-    password = obtain_key(mode="db_password")
-    role = obtain_key(mode="role")
 
     if request.method == "POST":
         data = await request.form
-        if data["email"] == username and compare_digest(data["password"], password):
-            if role == "admin":
-                login_user(AuthUser("ADMIN"))  # user ID from dbs
-            else:
-                login_user(AuthUser("USER"))
+        if data["name"] == obtain_key(mode="admin_username") and data[
+            "password"
+        ] == obtain_key(mode="admin_password"):
+            login_user(AuthUser("ADMIN"))
+        elif login_database(data["name"], data["password"]):
+            login_user(AuthUser(data["name"]))
             return redirect(url_for("profile.profile"))
         else:
-            return "źle"
+            return await render_template("login_forms/login.html")
 
     return await render_template("login_forms/login.html")
 
 
-@auth.route("/signup")
+@auth.route("/signup", methods={"GET", "POST"})
 async def signup():
-    return await render_template("login_forms/signup.html")
+    if request.method == "POST":
+        data = await request.form
+        register_user(data["name"], data["email"], data["password"])
+        login_user(AuthUser(data["name"]))
+        try:
+            send_newsletter(data["email"])
+        except Exception as e:
+            print(e)
+            pass
+        return redirect(url_for("profile.profile"))
 
 
 @auth.route("/logout")

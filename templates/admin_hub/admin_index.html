@@ -1,23 +1,29 @@
 {% extends "base.html" %}
 {% block title %}Admin Hub{% endblock %}
+{% block style_sheet %} rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='styles/admin_index_page.css') }}" {% endblock %}
 
 {% block content %}
 <div>
     <h2 class="title">You are an Admin.</h2>
 </div>
-<div>
+<div class="admin-container">
     <form method="POST">
         {% for key, header in config_content %}
         <p>
             <font color="white"> {{header}} </font>
         </p>
         {% if header == "db_scraping_time" %}
-        <input type="time" name="{{header}}" min="00:00" max="24:00" value={{key}} required />
+            <label class="admin-labem-input">
+                <input class="admin-input" type="time" name="{{header}}" min="00:00" max="24:00" value={{key}} required />
+            </label>
         {% else %}
-        <input name={{header}} value={{key}}>
+            <label class="admin-label-input">
+                <input class="admin-input" name={{header}} value={{key}}>
+            </label>
         {% endif %}
         {% endfor %}
-        <input type="submit" value="Submit">
+        <input class="admin-submit" type="submit" value="Submit">
     </form>
 </div>
 {% endblock %}

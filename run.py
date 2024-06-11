@@ -15,6 +15,15 @@ from src.pages.posts_db.adding_posts import (
 from src.utils import obtain_key
 import os
 import json
+import logging
+
+
+auth_manager = QuartAuth()
+
+
+
+auth_manager = QuartAuth()
+
 
 
 auth_manager = QuartAuth()
@@ -73,6 +82,7 @@ scheduler = AsyncIOScheduler()
 
 
 async def add_posts_to_db():
+    application.logger.info("ADDING POSTS TO DATABASE")
     await add_wykop_to_db()
     await add_movies_to_db()
     await add_reddit_to_db()
@@ -81,6 +91,7 @@ async def add_posts_to_db():
 
 @application.before_serving
 async def create_db_tables():
+    application.logger.info("CONNECTING TO DATABASE")
     async with application.app_context():
         db.create_all()
     initialize_platforms()

@@ -1,12 +1,18 @@
 {% extends "base.html" %}
 {% block title %}Profile{% endblock %}
+{% block style_sheet %} rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='styles/profile_page.css') }}" {% endblock %}
 
 {% block content %}
-<h1 class="title">
-    Welcome, you are logged in as: "{{user}}"!
-</h1>
-<form action="/logout">
-    <input type="submit" value="Logout" />
-</form>
-
+    <div class="profile-form">
+        <h1 class="title">
+            Welcome, you are logged in as: {{user}}!
+        </h1>
+        <form action="/logout">
+            <input class="logout-input" type="submit" value="Logout" />
+        </form>
+        <form method="POST" action="/profile">
+            <input class="logout-input" type="submit" value="Upgrade to Premium!" />
+        </form>
+    </div>
 {% endblock %}

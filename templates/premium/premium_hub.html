@@ -38,29 +38,7 @@
         </a>
         {% endfor %}
     </div>
-
-    <h2 class="title">Wykop</h2>
-    <div class="wykop_section">
-        {% for title, img_src, link in wykop_titles %}
-        <a href={{link}} target="_blank" class="wykop_item">
-            <img loading="lazy" src={{img_src}} alt={{title}}>
-            <p>{{title}}</p>
-        </a>
-        {% endfor %}
-    </div>
-
-    <h2 class="title">Reddit</h2>
-    <div class="reddit_section">
-        {% for title, sub, url, img, descs in reddit_trends %}
-        <a href={{url}} target="_blank" class="reddit_item">
-            <p>{{title}}</p>
-            <img loading="lazy" src={{img}} alt={{title}}>
-            <p>{{descs}}</p>
-            <p>{{sub}}</p>
-        </a>
-        {% endfor %}
-    </div>
-    {% endblock %}
+{% endblock %}
 </body>
 
 </html>

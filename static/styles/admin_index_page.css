@@ -1,0 +1,51 @@
+.admin-container{
+    width: 100%;
+    text-align: center;
+    font-size: 100px;
+}
+.title{
+    text-align: center;
+    margin-bottom: 5%;
+    margin-top: 3%;
+}
+p{
+    color:#f8a145;
+    font-size: 30%;
+    margin-top: 1%;
+}
+.admin-input{
+    background-color: #3e4444;
+    width: 80%;
+    height: 50px;
+    border-radius: 30px;
+    color: #f8a145;
+    font-size: 20%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    margin-bottom: 3%;
+}
+.admin-label-input{
+width: 100%;
+    height: fit-content;
+    text-align: center;
+}
+.admin-submit{
+    width: 20%;
+    border-radius: 15% / 85%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #000000;
+    color: white;
+    font-size: 20%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding-bottom: 0.5%;
+    padding-top: 0.5%;
+}
+.admin-submit:hover{
+    background-color: #f8a145;
+    color: black;
+}

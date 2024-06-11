@@ -1,11 +1,12 @@
 from quart import render_template, Blueprint, redirect, url_for, request
-from quart_auth import login_required, Unauthorized
+from quart_auth import login_required, Unauthorized, current_user
 from src.premium_pages.premium_scrapers.movies_premium import get_movies_premium
 from src.premium_pages.premium_scrapers.reddit_premium import get_reddit_premium
 from src.premium_pages.premium_scrapers.wykop_premium import get_wykop_premium
 from src.premium_pages.premium_scrapers.yt_premium import get_youtube_premium_objects
 from src.utils import obtain_key, threadReturn
 from src.premium_pages.premium_scrapers.get_categories import get_categories
+from src.auth.auth_db.auth_db import check_user_credencials
 
 premium = Blueprint("premium", __name__, url_prefix="/premium")
 yt_api_key = obtain_key(mode="youtube_key")
@@ -14,20 +15,26 @@ yt_api_key = obtain_key(mode="youtube_key")
 @premium.route("/hub")
 @login_required
 async def premium_main():
-    t_yt = threadReturn(target=get_youtube_premium_objects, args=(yt_api_key, [2, 10]))
-    t_movies = threadReturn(target=get_movies_premium)
+    print(current_user.auth_id, check_user_credencials(current_user.auth_id))
+    if check_user_credencials(current_user.auth_id):
+        t_yt = threadReturn(
+            target=get_youtube_premium_objects, args=(yt_api_key, [2, 10])
+        )
+        t_movies = threadReturn(target=get_movies_premium)
 
-    t_yt.start()
-    t_movies.start()
+        t_yt.start()
+        t_movies.start()
 
-    yt_titles, yt_imgs, yt_urls = t_yt.join()
-    movies_list, movies_posters, movies_links = t_movies.join()
+        yt_titles, yt_imgs, yt_urls = t_yt.join()
+        movies_list, movies_posters, movies_links = t_movies.join()
 
-    return await render_template(
-        "premium/premium_hub.html",
-        yt_data=zip(yt_titles, yt_imgs, yt_urls),
-        movies_data=zip(movies_list, movies_posters, movies_links),
-    )
+        return await render_template(
+            "premium/premium_hub.html",
+            yt_data=zip(yt_titles, yt_imgs, yt_urls),
+            movies_data=zip(movies_list, movies_posters, movies_links),
+        )
+    else:
+        return redirect(url_for("auth.unauthorized"))
 
 
 @premium.route("/hub/configure", methods=["POST", "GET"])
