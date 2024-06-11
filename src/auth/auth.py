@@ -12,7 +12,6 @@ from src.auth.auth_db.auth_db import register_user, check_user_credencials
 from src.auth.auth_db.auth_db import login_user as login_database
 from src.auth.newsletter.newsletter import send_newsletter
 
-
 auth = Blueprint("auth", __name__)
 
 
@@ -31,7 +30,7 @@ async def login():
         else:
             return await render_template("login_forms/login.html")
 
-    return await render_template("login_forms/login.html")
+    return await render_template("login_forms/profile.html")
 
 
 @auth.route("/signup", methods={"GET", "POST"})
