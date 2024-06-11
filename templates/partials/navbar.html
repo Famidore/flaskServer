@@ -12,9 +12,11 @@
       <li class="nav-item">
         <a class="nav-link" href="/trends">Trends</a>
       </li>
+      {% if current_user.auth_id %}
       <li class="nav-item">
         <a class="nav-link" href="/premium/hub">Premium Content</a>
       </li>
+      {% endif %}
       {% if current_user.auth_id == "ADMIN" %}
       <li class="nav-item">
         <a class="nav-link" href="/admin_hub">Admin Tools</a>
