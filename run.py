@@ -21,6 +21,10 @@ import logging
 auth_manager = QuartAuth()
 
 
+
+auth_manager = QuartAuth()
+
+
 def setup_app():
     # try:
     #     config = {
