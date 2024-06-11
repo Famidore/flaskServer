@@ -10,6 +10,7 @@ from secrets import compare_digest
 from src.utils import obtain_key
 from src.auth.auth_db.auth_db import register_user, check_user_credencials
 from src.auth.auth_db.auth_db import login_user as login_database
+from src.auth.newsletter.newsletter import send_newsletter
 
 
 auth = Blueprint("auth", __name__)
@@ -39,13 +40,13 @@ async def signup():
         data = await request.form
         register_user(data["name"], data["email"], data["password"])
         login_user(AuthUser(data["name"]))
+        try:
+            send_newsletter(data["email"])
+        except Exception as e:
+            print(e)
+            pass
         return redirect(url_for("profile.profile"))
     return await render_template("login_forms/signup.html")
-
-
-@auth.route("/register")
-async def register():
-    return await render_template("login_forms/signup_succed.html")
 
 
 @auth.route("/logout")
