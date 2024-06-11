@@ -21,7 +21,7 @@ def get_movies_items(url: str = movies_url, genre: str = "dramat"):
     for i, j, k in zip(titles, imgs, links):
 
         # check for lazy load
-        if i.text not in titles_text:
+        if i.text not in titles_text and "smartadserver" not in str(k["href"]):
             titles_text.append(i.text)
             imgs_text.append(j["src"])
             links_text.append("https://www.filmweb.pl" + str(k["href"]))
