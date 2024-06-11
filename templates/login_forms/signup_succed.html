@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Sign Up{% endblock %}
+{% block style_sheet %} rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='styles/signup_succed_page.css') }}" {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="succed-label">You were signed up successfully!</h1>
+    </div>
+{% endblock %}

@@ -12,33 +12,47 @@ from src.utils import obtain_key
 auth = Blueprint("auth", __name__)
 
 
+# @auth.route("/login", methods={"GET", "POST"})
+# async def login():
+#     """
+#     Check credentials (username && password)
+#     """
+#
+#     username = obtain_key(mode="db_username")
+#     password = obtain_key(mode="db_password")
+#     role = obtain_key(mode="role")
+#
+#     if request.method == "POST":
+#         data = await request.form
+#         if data["email"] == username and compare_digest(data["password"], password):
+#             if role == "admin":
+#                 login_user(AuthUser("ADMIN"))  # user ID from dbs
+#             else:
+#                 login_user(AuthUser("USER"))
+#             return redirect(url_for("profile.profile"))
+#         else:
+#             return "źle"
+#
+#     return await render_template("login_forms/login.html")
+
 @auth.route("/login", methods={"GET", "POST"})
 async def login():
-    """
-    Check credentials (username && password)
-    """
-
-    username = obtain_key(mode="db_username")
-    password = obtain_key(mode="db_password")
-    role = obtain_key(mode="role")
-
-    if request.method == "POST":
-        data = await request.form
-        if data["email"] == username and compare_digest(data["password"], password):
-            if role == "admin":
-                login_user(AuthUser("ADMIN"))  # user ID from dbs
-            else:
-                login_user(AuthUser("USER"))
-            return redirect(url_for("profile.profile"))
-        else:
-            return "źle"
-
     return await render_template("login_forms/login.html")
+
+
+@auth.route("/profile", methods={"GET", "POST"})
+async def profile():
+    return await render_template("login_forms/profile.html")
 
 
 @auth.route("/signup")
 async def signup():
     return await render_template("login_forms/signup.html")
+
+
+@auth.route("/register")
+async def register():
+    return await render_template("login_forms/signup_succed.html")
 
 
 @auth.route("/logout")
