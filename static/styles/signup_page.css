@@ -61,3 +61,7 @@ h3{
     color: red;
     font-weight: bold;
 }
+.submit-link{
+    text-align: center;
+    text-decoration: none;
+}
