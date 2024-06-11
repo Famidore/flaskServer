@@ -1,0 +1,10 @@
+.container{
+    width: 100%;
+    text-align: center;
+    font-size: 100px;
+}
+.succed-label{
+    font-size: 50%;
+    color: #f8a145;
+    margin-top: 50px;
+}

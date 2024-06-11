@@ -28,11 +28,21 @@ class User(db.Model):
     def _check_password(self, password):
         return self.password == self._hash_password(password)
 
+    def _check_premium(self):
+        return self.is_premium
+
+    def _upgrade(self):
+        self.is_premium = True
+        db.session.commit()
+        return True
+
+
 class Moderator(db.Model):
     __tablename__ = "moderators"
 
     moderator_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+
 
 class PremiumUser(db.Model):
     __tablename__ = "premium_users"
