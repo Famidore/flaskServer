@@ -1,33 +1,44 @@
-{% extends "index.html" %}
+<!DOCTYPE html>
+<html>
 
-{% block content %}
-<div class="column is-4 is-offset-4">
-    <h1>
-        Premium Main Hub
-    </h1>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Hub</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='squid.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/trends_page.css') }}">
+    <style>
+    </style>
+</head>
 
-<div>
-    <h2>
-        Reddit
+<body>
+    {% extends "index.html" %}
+    {% block content %}
+    <h2 class="title">Youtube
+        <a href="/premium/hub/configure">
+            <i class="fa fa-gear" style="font-size:36px; color:#f8a145"></i>
+        </a>
     </h2>
-</div>
+    <div class="yt_section">
+        {% for title, img, url in yt_data %}
+        <a href={{url}} target="_blank" class="yt_item">
+            <img loading="lazy" src={{img}} width=100 alt={{title}}>
+            <p>{{title}}</p>
+        </a>
+        {% endfor %}
+    </div>
 
-<div>
-    <h2>
-        Youtube
-    </h2>
-</div>
-
-<div>
-    <h2>
-        Wykop
-    </h2>
-</div>
-
-<div>
-    <h2>
-        Movies
-    </h2>
-</div>
+    <h2 class="title">Movies</h2>
+    <div class="movies_section">
+        {% for movie, poster, link in movies_data %}
+        <a href={{link}} target="_blank" class="movies_item">
+            <img loading="lazy" src={{poster}} width=100 alt={{movie}}>
+            <p>{{movie}}</p>
+        </a>
+        {% endfor %}
+    </div>
 {% endblock %}
+</body>
+
+</html>
