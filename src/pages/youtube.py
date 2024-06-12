@@ -16,17 +16,21 @@ def get_youtube_trending_videos(api_key, region_code="PL", max_results=10):
         .execute()
     )
 
+    categories = youtube.videoCategories().list(part="snippet", regionCode=region_code).execute()
+
     titles = []
     imgs = []
     urls = []
+    categories = []
 
     for video in response["items"]:
         snippet = video["snippet"]
         titles.append(snippet["title"])
         imgs.append(snippet["thumbnails"]["high"]["url"])
         urls.append("https://www.youtube.com/watch?v=" + str(video["id"]))
+        categories.append(snippet["id"]["title"])
 
-    return titles, imgs, urls
+    return titles, imgs, urls, categories
 
 
 if __name__ == "__main__":
