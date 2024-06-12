@@ -46,6 +46,7 @@ async def signup():
             print(e)
             pass
         return redirect(url_for("profile.profile"))
+    return await render_template("login_forms/signup.html")
 
 
 @auth.route("/logout")
