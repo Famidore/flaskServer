@@ -21,12 +21,15 @@ async def login():
 
     if request.method == "POST":
         data = await request.form
+        print(data["name"], data["password"])
         if data["name"] == obtain_key(mode="admin_username") and data[
             "password"
         ] == obtain_key(mode="admin_password"):
             login_user(AuthUser("ADMIN"))
+            print("ADMIN LOGGED IN")
         elif login_database(data["name"], data["password"]):
             login_user(AuthUser(data["name"]))
+            print("USER LOGGED IN")
             return redirect(url_for("profile.profile"))
         else:
             return await render_template("login_forms/login.html")
@@ -46,6 +49,7 @@ async def signup():
             print(e)
             pass
         return redirect(url_for("profile.profile"))
+    return await render_template("login_forms/signup.html")
 
 
 @auth.route("/logout")
