@@ -29,7 +29,11 @@
         {% endfor %}
     </div>
 
-    <h2 class="title">Movies</h2>
+    <h2 class="title">Movies
+        <a href="/premium/hub/configure">
+            <i class="fa fa-gear" style="font-size:36px; color:#f8a145"></i>
+        </a>
+    </h2>
     <div class="movies_section">
         {% for movie, poster, link in movies_data %}
         <a href={{link}} target="_blank" class="movies_item">
